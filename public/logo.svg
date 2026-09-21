@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <rect width="100%" height="100%" fill="#FFFFFF"/>
+  
+  <!-- Monogram Mark "M" -->
+  <g transform="translate(0, -10)">
+    <!-- Left Leg -->
+    <path d="M 180,180 L 180,100 L 200,100 L 200,180 Z" fill="#C1783A"/>
+    <!-- Left Inner Angle -->
+    <path d="M 200,100 L 250,150 L 235,165 L 200,130 Z" fill="#C1783A"/>
+    <!-- Center Chevron Peak (Crown Accent) -->
+    <path d="M 250,75 L 275,100 L 250,125 L 225,100 Z" fill="#C1783A"/>
+    <!-- Right Inner Angle -->
+    <path d="M 300,100 L 250,150 L 265,165 L 300,130 Z" fill="#C1783A"/>
+    <!-- Right Leg -->
+    <path d="M 300,180 L 300,100 L 320,100 L 320,180 Z" fill="#C1783A"/>
+  </g>
+
+  <!-- Typography -->
+  <text x="250" y="240" font-family="'Trajan Pro', 'Cinzel', serif" font-weight="bold" font-size="28" fill="#12292B" text-anchor="middle" letter-spacing="4">MASTERS</text>
+  <text x="250" y="270" font-family="'Montserrat', 'Arial', sans-serif" font-weight="500" font-size="14" fill="#C1783A" text-anchor="middle" letter-spacing="6">LEADERSHIP ACADEMY</text>
+  
+  <!-- Subtle Divider Line -->
+  <line x1="200" y1="285" x2="300" y2="285" stroke="#12292B" stroke-width="1.5" opacity="0.3"/>
+</svg>

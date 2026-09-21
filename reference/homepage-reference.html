@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masters Leadership Academy — Leadership Training, Conferences &amp; Technical Services</title>
+<meta name="description" content="Masters Leadership Academy — organising seminars, symposiums, conferences and technical services. CAC Registered Business Name BN 2357164, Port Harcourt, Rivers State, Nigeria.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12292B;
+    --ink-2:#1B3B3D;
+    --paper:#F5EFE2;
+    --paper-2:#ECE2CD;
+    --copper:#C1783A;
+    --copper-light:#E0A468;
+    --slate:#35586B;
+    --slate-light:#5B7E93;
+    --cream-text:#F5EFE2;
+    --ink-text:#1C1E1B;
+    --muted-paper:#78735F;
+    --rule:#284849;
+    --rule-paper:#D9CDAE;
+    --radius:2px;
+    --max:1200px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ font-family:'Inter',sans-serif; background:var(--paper); color:var(--ink-text); line-height:1.55; -webkit-font-smoothing:antialiased;}
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:0.01ms !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;} }
+  h1,h2,h3,.serif{ font-family:'Fraunces', serif; font-weight:450; letter-spacing:-0.01em;}
+  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.02em;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; display:inline-flex; align-items:center; gap:10px;}
+  .eyebrow::before{content:""; width:18px; height:1px; background:currentColor; opacity:0.6;}
+  button{font-family:inherit; cursor:pointer;}
+  .btn{ display:inline-flex; align-items:center; gap:8px; padding:14px 26px; font-size:14px; font-weight:600; border-radius:var(--radius); border:1px solid transparent; transition:all .2s ease;}
+  .btn-copper{ background:var(--copper); color:#1B0F05;}
+  .btn-copper:hover{ background:var(--copper-light);}
+  .btn-outline-dark{ border-color:rgba(245,239,226,0.35); color:var(--cream-text);}
+  .btn-outline-dark:hover{ border-color:var(--cream-text); background:rgba(245,239,226,0.08);}
+  .btn-outline-ink{ border-color:rgba(28,30,27,0.25); color:var(--ink-text);}
+  .btn-outline-ink:hover{ border-color:var(--ink-text); background:rgba(28,30,27,0.05);}
+
+  header{ position:sticky; top:0; z-index:100; background:rgba(18,41,43,0.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--rule);}
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:var(--max); margin:0 auto;}
+  .brand{ display:flex; flex-direction:column; color:var(--cream-text);}
+  .brand-name{ font-family:'Fraunces',serif; font-size:16px; font-weight:600; letter-spacing:0.02em; text-transform:uppercase;}
+  .brand-sub{ font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--copper-light); text-transform:uppercase;}
+  .nav-links{ display:flex; gap:32px; align-items:center;}
+  .nav-links a{ color:var(--cream-text); font-size:14px; opacity:0.85;}
+  .nav-links a:hover{ opacity:1;}
+  .nav-cta{ display:flex; align-items:center; gap:16px;}
+  .nav-toggle{ display:none; background:none; border:none; color:var(--cream-text); font-size:24px;}
+  @media (max-width:900px){ .nav-links{ display:none;} .nav-toggle{ display:block;} .nav-cta .btn-outline-dark{ display:none;} }
+
+  .hero{ background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%); color:var(--cream-text); position:relative; overflow:hidden; padding:100px 0 0;}
+  .hero::before{ content:""; position:absolute; inset:0; background-image: repeating-linear-gradient(115deg, rgba(224,164,104,0.05) 0 2px, transparent 2px 64px), repeating-linear-gradient(25deg, rgba(224,164,104,0.04) 0 1px, transparent 1px 90px); pointer-events:none;}
+  .hero-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:64px; align-items:center; position:relative; z-index:1;}
+  .hero h1{ font-size:clamp(38px,5.4vw,60px); line-height:1.06; margin:22px 0 26px; max-width:15ch;}
+  .hero p{ font-size:18px; color:#C7D2CE; max-width:46ch; margin-bottom:36px;}
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:14px 22px; align-items:center;}
+  .hero-ctas .secondary-links{ display:flex; gap:22px; margin-left:4px; font-size:14px;}
+  .hero-ctas .secondary-links a{ opacity:0.8; border-bottom:1px solid rgba(245,239,226,0.4); padding-bottom:2px;}
+
+  .ledger-card{ background:#0C201F; border:1px solid rgba(224,164,104,0.35); border-radius:3px; padding:28px 26px; position:relative;}
+  .ledger-card::before{ content:""; position:absolute; top:14px; right:14px; bottom:14px; left:14px; border:1px solid rgba(224,164,104,0.18); pointer-events:none;}
+  .ledger-head{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:22px;}
+  .ledger-head .mono{ font-size:11px; color:var(--copper-light); text-transform:uppercase;}
+  .ledger-status{ font-size:10px; padding:4px 10px; border:1px solid var(--slate-light); color:#9FC2DA; border-radius:20px; text-transform:uppercase; letter-spacing:0.1em;}
+  .ledger-row{ display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px solid rgba(245,239,226,0.09); font-size:13px;}
+  .ledger-row:last-child{ border-bottom:none;}
+  .ledger-row span:first-child{ color:#8FA39E;}
+  .ledger-row span:last-child{ font-family:'IBM Plex Mono',monospace; color:var(--cream-text); text-align:right; max-width:56%;}
+  .ledger-seal{ margin-top:20px; padding-top:18px; border-top:1px dashed rgba(224,164,104,0.3); font-size:11px; color:#8FA39E; display:flex; align-items:center; gap:8px;}
+  .ledger-seal .dot{ width:6px; height:6px; border-radius:50%; background:var(--copper-light);}
+  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr;} }
+
+  .strip{ background:var(--ink-2); border-top:1px solid var(--rule); padding:22px 0; margin-top:70px;}
+  .strip-row{ display:flex; flex-wrap:wrap; gap:14px 40px; justify-content:space-between; color:#AEC0BB;}
+  .strip-item{ font-size:12px; display:flex; align-items:center; gap:9px; white-space:nowrap;}
+  .strip-item .dot{ width:4px; height:4px; background:var(--copper-light); border-radius:50%;}
+
+  section{ padding:100px 0;}
+  .section-head{ max-width:640px; margin-bottom:56px;}
+  .section-head .eyebrow{ color:var(--slate); margin-bottom:16px;}
+  .section-head h2{ font-size:clamp(28px,3.4vw,42px); line-height:1.12;}
+  .section-head p{ margin-top:16px; color:var(--muted-paper); font-size:16px; max-width:54ch;}
+
+  .mission{ background:var(--paper);}
+  .mission-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px;}
+  .mission-block .label{ font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:var(--slate); margin-bottom:14px; font-weight:600;}
+  .mission-block p{ font-size:17px; color:var(--muted-paper); line-height:1.6;}
+  .placeholder-note{ display:inline-flex; align-items:center; gap:8px; margin-top:16px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--copper); text-transform:uppercase; letter-spacing:0.06em; border:1px dashed var(--rule-paper); padding:6px 10px;}
+
+  .registration{ background:var(--paper-2);}
+  .reg-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule-paper); border:1px solid var(--rule-paper);}
+  .reg-card{ background:var(--paper-2); padding:28px 24px;}
+  .reg-card .role{ font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--slate); margin-bottom:10px;}
+  .reg-card .name{ font-family:'Fraunces',serif; font-size:18px; margin-bottom:6px;}
+  .reg-card .aff{ font-size:12px; color:var(--muted-paper); line-height:1.4;}
+  @media (max-width:900px){ .reg-grid{ grid-template-columns:1fr 1fr;} }
+  @media (max-width:600px){ .reg-grid{ grid-template-columns:1fr;} }
+
+  .services{ background:var(--ink); color:var(--cream-text);}
+  .services .section-head .eyebrow{ color:var(--copper-light);}
+  .services .section-head p{ color:#B9C6C2;}
+  .svc-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--rule);}
+  .svc-card{ background:var(--ink); padding:34px 30px; transition:background .25s ease;}
+  .svc-card:hover{ background:var(--ink-2);}
+  .svc-num{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--copper-light); margin-bottom:22px; display:block;}
+  .svc-card h3{ font-size:21px; margin-bottom:12px; line-height:1.25;}
+  .svc-card p{ font-size:14px; color:#9AACA6; margin-bottom:20px;}
+  .svc-card .tag{ font-size:11px; font-family:'IBM Plex Mono',monospace; color:var(--copper-light); text-transform:uppercase; letter-spacing:0.06em;}
+  @media (max-width:900px){ .svc-grid{ grid-template-columns:1fr 1fr;} }
+  @media (max-width:600px){ .svc-grid{ grid-template-columns:1fr;} }
+
+  .programmes{ background:var(--paper);}
+  .prog-empty{ border:1px dashed var(--rule-paper); padding:60px 40px; text-align:center; color:var(--muted-paper);}
+  .prog-empty h4{ font-family:'Fraunces',serif; color:var(--ink-text); font-size:21px; margin-bottom:10px;}
+  .prog-empty p{ font-size:14px; max-width:52ch; margin:0 auto;}
+
+  .media{ background:var(--paper-2);}
+  .media-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:24px;}
+  .video-slot{ background:var(--ink); border:1px solid var(--rule); aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;}
+  .video-slot .play{ width:64px; height:64px; border-radius:50%; border:1px solid var(--copper-light); display:flex; align-items:center; justify-content:center; color:var(--copper-light); font-size:20px; position:relative; z-index:2;}
+  .video-slot .caption{ position:absolute; bottom:0; left:0; right:0; padding:16px 20px; background:linear-gradient(0deg, rgba(12,32,31,0.9), transparent); color:#B9C6C2; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.06em; z-index:2;}
+  .media-side{ display:flex; flex-direction:column; gap:24px;}
+  .photo-slot{ background:var(--paper); border:1px solid var(--rule-paper); flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px; gap:10px; min-height:130px;}
+  .photo-slot .icon{ width:30px; height:30px; border:1px solid var(--slate); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--slate); font-size:13px;}
+  .photo-slot span{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted-paper); text-transform:uppercase; letter-spacing:0.05em;}
+  @media (max-width:900px){ .media-grid{ grid-template-columns:1fr;} }
+
+  .events{ background:var(--ink); color:var(--cream-text);}
+  .events .section-head .eyebrow{ color:var(--copper-light);}
+  .events .section-head p{ color:#B9C6C2;}
+  .event-empty{ border:1px dashed var(--rule); padding:60px 40px; text-align:center; color:#9AACA6;}
+  .event-empty h4{ font-family:'Fraunces',serif; color:var(--cream-text); font-size:20px; margin-bottom:10px;}
+  .event-empty p{ font-size:14px; max-width:48ch; margin:0 auto;}
+
+  .why{ background:var(--slate); color:var(--cream-text);}
+  .why .section-head .eyebrow{ color:#BFD6E3;}
+  .why .section-head p{ color:#D6E2E8;}
+  .why-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(245,239,226,0.15);}
+  .why-card{ background:var(--slate); padding:32px 26px;}
+  .why-card .k{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--copper-light); margin-bottom:14px; text-transform:uppercase; letter-spacing:0.08em;}
+  .why-card h3{ font-size:19px; margin-bottom:10px;}
+  .why-card p{ font-size:13px; color:#D6E2E8;}
+  @media (max-width:900px){ .why-grid{ grid-template-columns:1fr;} }
+
+  .clients{ background:var(--paper);}
+  .client-wall{ display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--rule-paper); border:1px solid var(--rule-paper); margin-bottom:34px;}
+  .client-slot{ background:var(--paper-2); height:88px; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted-paper); text-align:center; padding:10px;}
+  @media (max-width:900px){ .client-wall{ grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:600px){ .client-wall{ grid-template-columns:repeat(2,1fr);} }
+
+  .insights{ background:var(--paper-2);}
+  .insight-empty{ border:1px solid var(--rule-paper); padding:50px 40px; text-align:center; color:var(--muted-paper); background:var(--paper);}
+  .insight-empty h4{ font-family:'Fraunces',serif; color:var(--ink-text); font-size:19px; margin-bottom:8px;}
+
+  .newsletter{ background:var(--copper); color:#1B0F05;}
+  .nl-grid{ display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;}
+  .nl-grid h2{ font-size:clamp(26px,3vw,36px); line-height:1.15;}
+  .nl-grid p{ margin-top:14px; color:rgba(27,15,5,0.8); max-width:40ch;}
+  .nl-form{ display:flex; flex-direction:column; gap:14px;}
+  .nl-form .row{ display:flex; gap:10px;}
+  .nl-form input{ flex:1; padding:14px 16px; border:1px solid rgba(27,15,5,0.35); background:transparent; color:#1B0F05; font-size:14px;}
+  .nl-form input::placeholder{ color:rgba(27,15,5,0.55);}
+  .nl-tags{ display:flex; flex-wrap:wrap; gap:8px; margin:4px 0 6px;}
+  .nl-tag{ font-size:11px; padding:6px 12px; border:1px solid rgba(27,15,5,0.35); border-radius:20px; cursor:pointer; user-select:none; transition:all .15s ease;}
+  .nl-tag.active{ background:#1B0F05; color:var(--copper-light); border-color:#1B0F05;}
+  .nl-msg{ font-size:12px; margin-top:6px; color:#1B0F05; font-weight:600; display:none;}
+  @media (max-width:900px){ .nl-grid{ grid-template-columns:1fr;} }
+
+  .contact-cta{ background:var(--paper); text-align:center;}
+  .contact-cta h2{ font-size:clamp(30px,4vw,46px); max-width:18ch; margin:0 auto 22px;}
+  .contact-cta .ctas{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:10px;}
+  .contact-cta .placeholder-note{ margin-top:26px;}
+
+  footer{ background:var(--ink); color:#9AACA6; padding:70px 0 30px;}
+  .foot-grid{ display:grid; grid-template-columns:1.4fr repeat(4,1fr); gap:40px; padding-bottom:50px; border-bottom:1px solid var(--rule);}
+  .foot-brand .brand-name{ color:var(--cream-text);}
+  .foot-brand p{ font-size:13px; margin-top:16px; max-width:32ch; line-height:1.6;}
+  .foot-col h5{ font-size:12px; text-transform:uppercase; letter-spacing:0.1em; color:var(--copper-light); margin-bottom:16px;}
+  .foot-col a{ display:block; font-size:13px; margin-bottom:10px; color:#9AACA6;}
+  .foot-col a:hover{ color:var(--cream-text);}
+  .foot-bottom{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; padding-top:26px; font-size:12px;}
+  .foot-legal{ display:flex; gap:20px; flex-wrap:wrap;}
+  @media (max-width:900px){ .foot-grid{ grid-template-columns:1fr 1fr;} }
+  @media (max-width:600px){ .foot-grid{ grid-template-columns:1fr;} }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{ opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="brand">
+      <span class="brand-name">Masters Leadership Academy</span>
+      <span class="brand-sub">Seminars · Conferences · Technical Services</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#programmes">Programmes</a>
+      <a href="#events">Events</a>
+      <a href="#media">Media</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-outline-dark">Enquire Now</a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding-bottom:0;">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">CAC Registered Business Name · BN 2357164 · Est. 2015</span>
+          <h1>Developing leaders through seminars, conferences and technical training</h1>
+          <p>Masters Leadership Academy organises seminars, symposiums and conferences, and provides technical services — registered with the Corporate Affairs Commission of Nigeria and based in Port Harcourt, Rivers State.</p>
+          <div class="hero-ctas">
+            <a href="#services" class="btn btn-copper">Explore Our Services</a>
+            <a href="#contact" class="btn btn-outline-dark">Request a Proposal</a>
+            <div class="secondary-links">
+              <a href="#programmes">See programmes →</a>
+            </div>
+          </div>
+        </div>
+        <div class="ledger-card reveal">
+          <div class="ledger-head">
+            <span class="mono">Certificate of Registration</span>
+            <span class="ledger-status">Active</span>
+          </div>
+          <div class="ledger-row"><span>Registered Name</span><span>Masters Leadership Academy</span></div>
+          <div class="ledger-row"><span>Entity Type</span><span>Business Name</span></div>
+          <div class="ledger-row"><span>Regulator</span><span>Corporate Affairs Commission</span></div>
+          <div class="ledger-row"><span>BN No.</span><span>2357164</span></div>
+          <div class="ledger-row"><span>CRBN</span><span>635769</span></div>
+          <div class="ledger-row"><span>Registered</span><span>18 Aug 2015</span></div>
+          <div class="ledger-row"><span>State</span><span>Rivers, Nigeria</span></div>
+          <div class="ledger-seal"><span class="dot"></span> Verifiable with the Corporate Affairs Commission, Federal Republic of Nigeria</div>
+        </div>
+      </div>
+    </div>
+    <div class="strip">
+      <div class="wrap">
+        <div class="strip-row">
+          <span class="strip-item"><span class="dot"></span>CAC Registered Business Name</span>
+          <span class="strip-item"><span class="dot"></span>BN 2357164</span>
+          <span class="strip-item"><span class="dot"></span>Est. 2015</span>
+          <span class="strip-item"><span class="dot"></span>Seminars &amp; Symposiums</span>
+          <span class="strip-item"><span class="dot"></span>Conferences</span>
+          <span class="strip-item"><span class="dot"></span>Technical Services</span>
+          <span class="strip-item"><span class="dot"></span>Port Harcourt, Rivers State</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="mission" id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Who we are</span>
+        <h2>A registered training and events firm based in Rivers State</h2>
+      </div>
+      <div class="mission-grid">
+        <div class="mission-block">
+          <div class="label">Registered Purpose</div>
+          <p>Masters Leadership Academy is registered with the Corporate Affairs Commission of Nigeria as a Business Name, with a stated general nature of business covering the organising of seminars and symposiums, the organising of conferences, and technical services.</p>
+        </div>
+        <div class="mission-block">
+          <div class="label">Our Story &amp; Mission</div>
+          <p class="mono" style="font-size:14px; color:var(--muted-paper); font-style:italic;">[CMS PLACEHOLDER] — Add the Academy's founding story, mission statement and vision here.</p>
+          <span class="placeholder-note">Editable field · not yet supplied</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section class="registration" style="padding:70px 0;">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:36px;">
+        <span class="eyebrow">Leadership</span>
+        <h2 style="font-size:24px;">Our Team</h2>
+        <p style="margin-top:10px;">No leadership or facilitator profiles were supplied with the registration certificate. Add real names, roles and bios below.</p>
+      </div>
+      <div class="reg-grid">
+        <div class="reg-card"><div class="role">[Role]</div><div class="name">[CMS Placeholder]</div><div class="aff">Add facilitator or director profile</div></div>
+        <div class="reg-card"><div class="role">[Role]</div><div class="name">[CMS Placeholder]</div><div class="aff">Add facilitator or director profile</div></div>
+        <div class="reg-card"><div class="role">[Role]</div><div class="name">[CMS Placeholder]</div><div class="aff">Add facilitator or director profile</div></div>
+        <div class="reg-card"><div class="role">[Role]</div><div class="name">[CMS Placeholder]</div><div class="aff">Add facilitator or director profile</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES (verified nature of business) -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">What we do</span>
+        <h2>Our registered service areas</h2>
+        <p>As stated on our Certificate of Registration with the Corporate Affairs Commission.</p>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card">
+          <span class="svc-num">01</span>
+          <h3>Seminars &amp; Symposiums</h3>
+          <p>[CMS PLACEHOLDER] — describe the format, audience and typical topics covered.</p>
+          <span class="tag">Verified service line</span>
+        </div>
+        <div class="svc-card">
+          <span class="svc-num">02</span>
+          <h3>Conferences</h3>
+          <p>[CMS PLACEHOLDER] — describe conference planning, hosting or organising services offered.</p>
+          <span class="tag">Verified service line</span>
+        </div>
+        <div class="svc-card">
+          <span class="svc-num">03</span>
+          <h3>Technical Services</h3>
+          <p>[CMS PLACEHOLDER] — describe the specific technical services provided to clients.</p>
+          <span class="tag">Verified service line</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMMES -->
+  <section class="programmes" id="programmes">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Programmes</span>
+        <h2>Leadership development programmes</h2>
+      </div>
+      <div class="prog-empty">
+        <h4>No programmes published yet</h4>
+        <p>Specific leadership training tracks, curricula and durations were not included on the registration certificate. Add real programme names and details here before launch.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDIA -->
+  <section class="media" id="media">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Media</span>
+        <h2>See the Academy in action</h2>
+        <p>Real footage and photography from your seminars, conferences and training sessions belongs here — this player and gallery are wired up and ready.</p>
+      </div>
+      <div class="media-grid">
+        <div class="video-slot">
+          <video id="mlaVideo" controls poster="" style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; display:none;"></video>
+          <div class="play" id="playIcon">▶</div>
+          <div class="caption">Real video placeholder — add your own footage source</div>
+        </div>
+        <div class="media-side">
+          <div class="photo-slot"><div class="icon">▤</div><span>Photo — add real image</span></div>
+          <div class="photo-slot"><div class="icon">▤</div><span>Photo — add real image</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="events" id="events">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Events</span>
+        <h2>Upcoming seminars &amp; conferences</h2>
+      </div>
+      <div class="event-empty">
+        <h4>No events scheduled yet</h4>
+        <p>Upcoming seminars, symposiums and conferences will be published here once dates are confirmed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Why work with us</span>
+        <h2>Built on a registered, accountable foundation</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card"><div class="k">Registered</div><h3>CAC Compliant</h3><p>Registered as a Business Name with the Corporate Affairs Commission — BN 2357164.</p></div>
+        <div class="why-card"><div class="k">Since 2015</div><h3>Established Track Record</h3><p>[CMS PLACEHOLDER] — add years of experience, sectors served or notable engagements.</p></div>
+        <div class="why-card"><div class="k">Based in Rivers State</div><h3>Local &amp; Accessible</h3><p>Headquartered in Port Harcourt, positioned to serve organisations across the Niger Delta region.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section class="clients">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Clients &amp; Partners</span>
+        <h2>Organisations we have worked with</h2>
+        <p>No client or partner list was supplied. Verified logos will appear here as relationships are confirmed.</p>
+      </div>
+      <div class="client-wall">
+        <div class="client-slot">Client Logo</div>
+        <div class="client-slot">Client Logo</div>
+        <div class="client-slot">Partner Logo</div>
+        <div class="client-slot">Partner Logo</div>
+        <div class="client-slot">Client Logo</div>
+      </div>
+      <a href="#contact" class="btn btn-copper" style="color:#1B0F05;">Become a Client Organisation</a>
+    </div>
+  </section>
+
+  <!-- INSIGHTS -->
+  <section class="insights">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Insights</span>
+        <h2>Articles &amp; leadership perspectives</h2>
+      </div>
+      <div class="insight-empty">
+        <h4>No articles published yet</h4>
+        <p>Leadership insights and event recaps will appear here once the Academy begins publishing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <div class="wrap">
+      <div class="nl-grid">
+        <div>
+          <h2>Get notified about upcoming seminars</h2>
+          <p>News on conferences, training dates and technical service offerings — sent occasionally.</p>
+        </div>
+        <form class="nl-form" id="nlForm">
+          <div class="row"><input type="text" placeholder="Full name" required></div>
+          <div class="row"><input type="email" placeholder="Email address" required></div>
+          <div class="nl-tags">
+            <span class="nl-tag">Seminars</span>
+            <span class="nl-tag">Conferences</span>
+            <span class="nl-tag">Technical Services</span>
+          </div>
+          <button type="submit" class="btn btn-outline-dark" style="border-color:#1B0F05; color:#1B0F05; align-self:flex-start;">Subscribe</button>
+          <div class="nl-msg" id="nlMsg">Thank you — you're on the list.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-cta" id="contact">
+    <div class="wrap">
+      <span class="eyebrow" style="color:var(--slate); margin-bottom:20px; display:inline-flex;">Get in touch</span>
+      <h2>Book a seminar, conference or technical service enquiry</h2>
+      <div class="ctas">
+        <a href="#" class="btn btn-copper" style="color:#1B0F05;">[CMS Placeholder — add email]</a>
+        <a href="#" class="btn btn-outline-ink">[CMS Placeholder — add phone]</a>
+      </div>
+      <div class="placeholder-note">No email or phone number was supplied on the registration certificate — add real contact details</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand-name">Masters Leadership Academy</span>
+        <p>A registered Business Name organising seminars, symposiums, conferences and technical services from Port Harcourt, Rivers State, Nigeria.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Explore</h5>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#programmes">Programmes</a>
+        <a href="#events">Events</a>
+      </div>
+      <div class="foot-col">
+        <h5>Media</h5>
+        <a href="#media">Video</a>
+        <a href="#media">Gallery</a>
+        <a href="#">Insights</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="#">Leadership</a>
+        <a href="#">Clients</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h5>Registered Address</h5>
+        <a href="#">Plot 4Y2K Crescent, off Tony Okocha Road, New Rumuigbo, Port Harcourt, Rivers State</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="mono">BN 2357164 · CRBN 635769 · CAC Registered Business Name</span>
+      <div class="foot-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  toggle.addEventListener('click', () => {
+    const open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.cssText = open ? '' : 'display:flex; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:#12292B; padding:20px 32px; gap:18px;';
+  });
+
+  document.querySelectorAll('.nl-tag').forEach(tag => {
+    tag.addEventListener('click', () => tag.classList.toggle('active'));
+  });
+
+  document.getElementById('nlForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('nlMsg').style.display = 'block';
+    e.target.reset();
+    document.querySelectorAll('.nl-tag.active').forEach(t => t.classList.remove('active'));
+  });
+
+  // Video slot: shows a play icon until a real source is wired up.
+  // To activate: set video.src = 'your-real-video-file.mp4' or embed a real <iframe> instead of this <video> tag.
+  document.getElementById('playIcon').addEventListener('click', () => {
+    alert('Add a real video file to activate this player — see the code comment near #mlaVideo.');
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in'); });
+  }, { threshold: 0.2 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

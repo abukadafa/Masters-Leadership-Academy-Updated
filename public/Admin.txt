@@ -1,0 +1,4 @@
+Admin Portal URL: http://localhost:3000/admin
+Email: admin@mastersleadership.academy
+Password: AdminPassword2026!
+Role: SUPER_ADMIN
