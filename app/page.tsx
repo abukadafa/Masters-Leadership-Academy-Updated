@@ -34,10 +34,10 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-amber-500/5 rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-center">
-            {/* Left Content Column */}
-            <div className="lg:col-span-7 flex flex-col items-start text-left">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-12 xl:gap-20">
+            {/* Left Content Column — Anchored Far Left with Controlled Max Width */}
+            <div className="w-full lg:max-w-[560px] xl:max-w-[600px] flex flex-col items-start text-left shrink-0">
               {/* Animated Live Status Pill */}
               <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-semibold tracking-wide mb-6 shadow-2xs">
                 <span className="relative flex h-2.5 w-2.5">
@@ -48,7 +48,7 @@ export default function Home() {
               </div>
 
               {/* Main Authority Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-serif font-extrabold text-slate-950 leading-[1.18] tracking-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-serif font-extrabold text-slate-950 leading-[1.16] tracking-tight">
                 Building Leadership With<br />
                 <span className="relative inline-block my-1.5">
                   <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-emerald-800 via-teal-800 to-amber-700">
@@ -60,7 +60,7 @@ export default function Home() {
               </h1>
 
               {/* Exact Requested Subtitle */}
-              <p className="mt-6 text-lg sm:text-xl text-slate-700 max-w-2xl leading-relaxed font-normal">
+              <p className="mt-6 text-base sm:text-lg lg:text-xl text-slate-700 max-w-xl leading-relaxed font-normal">
                 Empowering executives, managers, and institutions with diagnostic decision frameworks, executive seminars, and strategic technical services.
               </p>
 
@@ -74,7 +74,7 @@ export default function Home() {
                 ].map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs font-semibold text-slate-700 bg-white border border-slate-200/90 shadow-2xs rounded-full px-4 py-1.5"
+                    className="text-xs font-semibold text-slate-700 bg-white border border-slate-200/90 shadow-2xs rounded-full px-3.5 py-1.5"
                   >
                     {tag}
                   </span>
@@ -85,7 +85,7 @@ export default function Home() {
               <div className="flex flex-wrap items-center gap-4 mt-8">
                 <Link
                   href="/programmes"
-                  className="inline-flex items-center gap-2.5 px-8 py-3.5 bg-emerald-700 text-white font-semibold text-sm rounded-xl hover:bg-emerald-800 transition-all duration-200 shadow-[0_4px_16px_rgba(5,150,105,0.25)] hover:shadow-[0_6px_22px_rgba(5,150,105,0.35)] hover:-translate-y-0.5 group"
+                  className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-emerald-700 text-white font-semibold text-sm rounded-xl hover:bg-emerald-800 transition-all duration-200 shadow-[0_4px_16px_rgba(5,150,105,0.25)] hover:shadow-[0_6px_22px_rgba(5,150,105,0.35)] hover:-translate-y-0.5 group"
                 >
                   <span>Explore Programmes &amp; Seminars</span>
                   <svg
@@ -99,7 +99,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/corporate-training"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 border border-slate-300 bg-white text-slate-700 font-semibold text-sm rounded-xl hover:bg-slate-50 hover:border-slate-400 transition-all duration-200 shadow-2xs hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 border border-slate-300 bg-white text-slate-700 font-semibold text-sm rounded-xl hover:bg-slate-50 hover:border-slate-400 transition-all duration-200 shadow-2xs hover:-translate-y-0.5"
                 >
                   <span>Corporate Advisory</span>
                   <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -109,26 +109,26 @@ export default function Home() {
               </div>
 
               {/* Fast Trust Indicators */}
-              <div className="flex flex-wrap items-center gap-6 mt-8 pt-6 border-t border-slate-200/80 text-xs text-slate-500 font-mono">
+              <div className="flex flex-wrap items-center gap-5 mt-8 pt-6 border-t border-slate-200/80 text-xs text-slate-500 font-mono">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-600" />
-                  <span>CAC Registered: BN 2357164</span>
+                  <span>CAC: BN 2357164</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-600" />
-                  <span>CRBN 635769</span>
+                  <span>CRBN: 635769</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-amber-500" />
-                  <span>Abuja Corporate Office: Utako</span>
+                  <span>Utako, Abuja</span>
                 </div>
               </div>
             </div>
 
-            {/* Right Visual Showcase Column — Stacked Cleanly Without Overlapping */}
-            <div className="lg:col-span-5 relative flex flex-col items-center">
+            {/* Right Visual Statistics Column — Anchored Far Right with Clean Center Gap */}
+            <div className="w-full lg:max-w-[420px] xl:max-w-[440px] flex flex-col items-center lg:items-end justify-center shrink-0">
               {/* Primary White Focus Card */}
-              <div className="relative w-full max-w-[430px] bg-white rounded-3xl shadow-[0_20px_50px_rgba(15,23,42,0.08)] border border-slate-200/90 p-7 sm:p-8">
+              <div className="relative w-full bg-white rounded-3xl shadow-[0_20px_50px_rgba(15,23,42,0.08)] border border-slate-200/90 p-7 sm:p-8">
                 <div className="flex items-center justify-between mb-5">
                   <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold shadow-2xs">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -152,12 +152,24 @@ export default function Home() {
                   Transforming executives, public institutions, and corporate boards into high-performing entities.
                 </p>
 
+                {/* Quick Institutional Stat Metrics */}
+                <div className="grid grid-cols-2 gap-3 mb-5 p-3.5 bg-slate-50 rounded-2xl border border-slate-100">
+                  <div>
+                    <div className="text-2xl font-serif font-extrabold text-emerald-800 tracking-tight">1,250+</div>
+                    <div className="text-[11px] font-medium text-slate-600 leading-tight mt-0.5">Leaders Trained</div>
+                  </div>
+                  <div className="border-l border-slate-200 pl-3">
+                    <div className="text-2xl font-serif font-extrabold text-amber-700 tracking-tight">10+ Yrs</div>
+                    <div className="text-[11px] font-medium text-slate-600 leading-tight mt-0.5">Advisory Heritage</div>
+                  </div>
+                </div>
+
                 {/* Progress Indicators */}
                 <div className="space-y-3.5">
                   <div>
                     <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
                       <span>Seminars &amp; Symposiums</span>
-                      <span className="text-emerald-700 font-bold font-mono text-[11px]">Executive</span>
+                      <span className="text-emerald-700 font-bold font-mono text-[11px]">94% Executive</span>
                     </div>
                     <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div className="h-full bg-emerald-600 w-[94%] rounded-full" />
@@ -167,7 +179,7 @@ export default function Home() {
                   <div>
                     <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
                       <span>Conferences &amp; Summits</span>
-                      <span className="text-emerald-700 font-bold font-mono text-[11px]">Pan-African</span>
+                      <span className="text-emerald-700 font-bold font-mono text-[11px]">88% Pan-African</span>
                     </div>
                     <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div className="h-full bg-emerald-600 w-[88%] rounded-full" />
@@ -177,7 +189,7 @@ export default function Home() {
                   <div>
                     <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
                       <span>Technical Advisory &amp; Governance</span>
-                      <span className="text-amber-600 font-bold font-mono text-[11px]">Institutional</span>
+                      <span className="text-amber-600 font-bold font-mono text-[11px]">92% Institutional</span>
                     </div>
                     <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div className="h-full bg-amber-500 w-[92%] rounded-full" />
@@ -187,7 +199,7 @@ export default function Home() {
                   <div>
                     <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
                       <span>Thought Leadership Briefs</span>
-                      <span className="text-slate-500 font-bold font-mono text-[11px]">Continuous</span>
+                      <span className="text-slate-500 font-bold font-mono text-[11px]">80% Continuous</span>
                     </div>
                     <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div className="h-full bg-slate-400 w-[80%] rounded-full" />
