@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: "Where is the Academy located?",
-    a: "Our registered head office is at Plot 4Y2K Crescent, off Tony Okocha Road, New Rumuigbo, Port Harcourt, Rivers State, Nigeria.",
+    a: "Our corporate office is located at 36 Moses Majekodunmi Street, Utako, Abuja, FCT, Nigeria. We can be reached by phone at +234 811 464 6340 and email at mastersleadershipacademy@gmail.com.",
   },
   {
     q: "How do I register for a programme?",

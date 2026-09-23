@@ -1,19 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #12292B;
-  --ink-2: #1B3638;
-  --paper: #F5EFE2;
-  --paper-2: #ECE2CD;
+  --ink: #0F172A;
+  --ink-2: #1E293B;
+  --paper: #FFFFFF;
+  --paper-2: #F8FAFC;
+  --paper-3: #F1F5F9;
   --copper: #C1783A;
   --copper-light: #D5945F;
-  --slate: #2F4D50;
-  --slate-light: #517478;
-  --cream-text: #F5EFE2;
-  --ink-text: #1C1E1B;
-  --muted-paper: #6C6856;
-  --rule: #203F42;
-  --rule-paper: #D9CDAE;
+  --emerald: #059669;
+  --emerald-light: #10B981;
+  --slate: #334155;
+  --slate-light: #64748B;
+  --cream-text: #FFFFFF;
+  --ink-text: #0F172A;
+  --muted-paper: #475569;
+  --rule: #E2E8F0;
+  --rule-paper: #E2E8F0;
 }
 
 @theme {
@@ -21,8 +24,11 @@
   --color-ink-2: var(--ink-2);
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
+  --color-paper-3: var(--paper-3);
   --color-copper: var(--copper);
   --color-copper-light: var(--copper-light);
+  --color-emerald: var(--emerald);
+  --color-emerald-light: var(--emerald-light);
   --color-slate: var(--slate);
   --color-slate-light: var(--slate-light);
   --color-cream-text: var(--cream-text);
@@ -35,7 +41,7 @@
   --font-serif: var(--font-fraunces), serif;
   --font-mono: var(--font-ibm-plex-mono), monospace;
   
-  --radius-xs: 2px;
+  --radius-xs: 4px;
 }
 
 body {
@@ -48,8 +54,9 @@ body {
 
 h1, h2, h3, .serif {
   font-family: var(--font-fraunces), serif;
-  font-weight: 450;
-  letter-spacing: -0.01em;
+  font-weight: 550;
+  letter-spacing: -0.015em;
+  color: var(--ink-text);
 }
 
 .mono {
@@ -74,15 +81,51 @@ h1, h2, h3, .serif {
   opacity: 0.6;
 }
 
-/* Button Classes from reference HTML */
+/* Background Pattern Utilities */
+.bg-executive-pattern {
+  background-color: #FFFFFF;
+  background-image: 
+    radial-gradient(rgba(13, 92, 58, 0.08) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+  background-size: 52px 52px, 52px 52px, 52px 52px;
+  background-position: 0 0, 0 0, 0 0;
+}
+
+.bg-mesh-grid {
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.executive-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.executive-card:hover {
+  border-color: rgba(13, 92, 58, 0.4);
+  box-shadow: 0 20px 45px -12px rgba(13, 92, 58, 0.12);
+  transform: translateY(-3px);
+}
+
+/* Button Classes */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 26px;
+  padding: 12px 24px;
   font-size: 14px;
   font-weight: 600;
-  border-radius: 2px;
+  border-radius: 8px;
   border: 1px solid transparent;
   transition: all .2s ease;
   cursor: pointer;
@@ -90,26 +133,41 @@ h1, h2, h3, .serif {
 }
 .btn-copper {
   background: var(--copper);
-  color: #1B0F05;
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(193, 120, 58, 0.25);
 }
 .btn-copper:hover {
   background: var(--copper-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(193, 120, 58, 0.35);
+}
+.btn-emerald {
+  background: var(--emerald);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
+}
+.btn-emerald:hover {
+  background: var(--emerald-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.35);
 }
 .btn-outline-dark {
-  border-color: rgba(245, 239, 226, 0.35);
-  color: var(--cream-text);
+  border-color: #E2E8F0;
+  color: var(--ink-text);
+  background: #FFFFFF;
 }
 .btn-outline-dark:hover {
-  border-color: var(--cream-text);
-  background: rgba(245, 239, 226, 0.08);
+  border-color: var(--ink-text);
+  background: #F8FAFC;
 }
 .btn-outline-ink {
-  border-color: rgba(28, 30, 27, 0.25);
+  border-color: #CBD5E1;
   color: var(--ink-text);
+  background: #FFFFFF;
 }
 .btn-outline-ink:hover {
   border-color: var(--ink-text);
-  background: rgba(28, 30, 27, 0.05);
+  background: #F1F5F9;
 }
 
 /* Reveal transition styles from reference HTML */

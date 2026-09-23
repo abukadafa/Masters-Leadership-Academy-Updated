@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import CMSPlaceholder from "@/components/CMSPlaceholder";
 import Honeypot from "@/components/Honeypot";
+import { ORG_FACTS } from "@/lib/site";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -36,129 +36,164 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-paper py-16">
-      <div className="max-w-[1200px] mx-auto px-8">
-        <div className="max-w-[800px] mb-12">
-          <span className="eyebrow text-slate mb-4">Contact Us</span>
-          <h1 className="text-[36px] md:text-[48px] font-serif leading-tight text-ink-text mb-6">
-            Get in touch with Masters Leadership Academy
+    <div className="bg-white py-16 text-slate-900 selection:bg-emerald-100 selection:text-emerald-900">
+      <div className="max-w-[1240px] mx-auto px-6 lg:px-8">
+        {/* Page Heading */}
+        <div className="max-w-[840px] mb-12">
+          <span className="eyebrow text-emerald-700 mb-3">Contact Us</span>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-slate-950 leading-tight mb-5">
+            Connect With Masters Leadership Academy
           </h1>
-          <p className="text-[18px] text-muted-paper leading-relaxed">
-            Inquire about our seminars, conferences, and technical services. Our official office is based in Port Harcourt, Rivers State.
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+            Inquire about our executive seminars, institutional symposiums, national conferences, or bespoke technical advisory services. Visit our Abuja corporate office or reach our advisory desk directly.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start border-t border-rule-paper pt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start border-t border-slate-200 pt-12">
           {/* Left Column: Contact Form */}
-          <div className="bg-paper-2 border border-rule-paper/60 p-8 rounded-[3px]">
-            <h2 className="text-[22px] font-serif text-ink-text mb-6">Send a Message</h2>
+          <div className="lg:col-span-7 bg-[#F8FAFC] border border-slate-200 p-8 sm:p-10 rounded-2xl shadow-xs">
+            <h2 className="text-2xl font-serif font-bold text-slate-950 mb-2">Send an Official Enquiry</h2>
+            <p className="text-xs sm:text-sm text-slate-500 mb-6">
+              Our programme coordinators and technical advisory team will review your message promptly.
+            </p>
+
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <Honeypot value={website} onChange={setWebsite} />
               <div>
-                <label className="block text-xs font-mono uppercase text-slate mb-2">Full Name</label>
+                <label className="block text-xs font-mono font-semibold uppercase text-slate-700 mb-1.5">
+                  Full Name
+                </label>
                 <input
                   type="text"
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full p-3 border border-rule-paper bg-paper text-[14px] text-ink-text focus:outline-none focus:border-copper"
+                  placeholder="Your full name"
+                  className="w-full p-3.5 border border-slate-300 rounded-lg bg-white text-sm text-slate-900 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 shadow-2xs"
                 />
               </div>
+
               <div>
-                <label className="block text-xs font-mono uppercase text-slate mb-2">Email Address</label>
+                <label className="block text-xs font-mono font-semibold uppercase text-slate-700 mb-1.5">
+                  Official / Corporate Email Address
+                </label>
                 <input
                   type="email"
                   required
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full p-3 border border-rule-paper bg-paper text-[14px] text-ink-text focus:outline-none focus:border-copper"
+                  placeholder="name@organization.com"
+                  className="w-full p-3.5 border border-slate-300 rounded-lg bg-white text-sm text-slate-900 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 shadow-2xs"
                 />
               </div>
+
               <div>
-                <label className="block text-xs font-mono uppercase text-slate mb-2">Subject</label>
+                <label className="block text-xs font-mono font-semibold uppercase text-slate-700 mb-1.5">
+                  Subject / Area of Interest
+                </label>
                 <input
                   type="text"
                   required
                   value={form.subject}
                   onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                  className="w-full p-3 border border-rule-paper bg-paper text-[14px] text-ink-text focus:outline-none focus:border-copper"
+                  placeholder="e.g. Executive Seminar / Corporate Advisory"
+                  className="w-full p-3.5 border border-slate-300 rounded-lg bg-white text-sm text-slate-900 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 shadow-2xs"
                 />
               </div>
+
               <div>
-                <label className="block text-xs font-mono uppercase text-slate mb-2">Message</label>
+                <label className="block text-xs font-mono font-semibold uppercase text-slate-700 mb-1.5">
+                  Message / Brief
+                </label>
                 <textarea
                   required
                   rows={5}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full p-3 border border-rule-paper bg-paper text-[14px] text-ink-text focus:outline-none focus:border-copper resize-none"
+                  placeholder="Provide context on your leadership development requirements or consultation request..."
+                  className="w-full p-3.5 border border-slate-300 rounded-lg bg-white text-sm text-slate-900 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 resize-none shadow-2xs"
                 />
               </div>
-              <button type="submit" disabled={loading} className="btn btn-copper w-full justify-center cursor-pointer disabled:opacity-60">
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn btn-emerald w-full justify-center !py-3.5 cursor-pointer disabled:opacity-60 text-sm font-semibold rounded-lg mt-2"
+              >
                 {loading ? "Sending..." : "Submit Enquiry"}
               </button>
+
               {error && (
-                <div className="text-[13px] text-[#B23A3A] mt-1 text-center">{error}</div>
+                <div className="text-xs text-red-600 font-medium mt-1 text-center bg-red-50 p-2.5 rounded-lg border border-red-200">
+                  {error}
+                </div>
               )}
+
               {submitted && (
-                <div className="text-[13px] font-semibold text-ink-text mt-2 p-3 bg-copper/10 border border-copper/30 text-center">
-                  Thank you! Your message has been sent successfully. We will respond shortly.
+                <div className="text-sm font-semibold text-emerald-800 mt-2 p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-center">
+                  Thank you! Your message has been sent successfully. Our team will respond shortly.
                 </div>
               )}
             </form>
           </div>
 
           {/* Right Column: Office Details */}
-          <div className="flex flex-col gap-8">
-            <div>
-              <span className="text-[12px] font-semibold text-slate tracking-[0.12em] uppercase block mb-3">
-                Registered Head Office
+          <div className="lg:col-span-5 flex flex-col gap-8">
+            {/* Abuja Corporate Office */}
+            <div className="bg-[#F8FAFC] border border-slate-200 p-8 rounded-2xl">
+              <span className="text-xs font-mono font-bold text-emerald-700 tracking-wider uppercase block mb-3">
+                Corporate Office
               </span>
-              <p className="text-[16px] text-ink-text font-serif leading-relaxed mb-2">
-                Masters Leadership Academy
+              <h3 className="text-xl font-serif font-bold text-slate-950 mb-2">
+                Abuja Office
+              </h3>
+              <p className="text-sm text-slate-700 leading-relaxed mb-4">
+                36 Moses Majekodunmi Street,<br />
+                Utako, Abuja, FCT,<br />
+                Nigeria.
               </p>
-              <p className="text-[15px] text-muted-paper leading-relaxed">
-                Plot 4Y2K Crescent, off Tony Okocha Road,<br />
-                New Rumuigbo, Port Harcourt,<br />
-                Rivers State, Nigeria.
-              </p>
-            </div>
 
-            <div className="border-t border-rule-paper/50 pt-8">
-              <span className="text-[12px] font-semibold text-slate tracking-[0.12em] uppercase block mb-3">
-                Direct Contact Channels
-              </span>
-              <div className="flex flex-col gap-6">
-                <div>
-                  <span className="text-[11px] font-mono text-muted-paper uppercase block mb-1">Email Address</span>
-                  <CMSPlaceholder text="Provide a valid corporate email address (e.g. contact@mastersleadership.academy)" />
+              <div className="pt-4 border-t border-slate-200 space-y-3 text-sm">
+                <div className="flex items-center gap-2.5">
+                  <span className="text-emerald-700 font-bold">📞 Phone:</span>
+                  <a href="tel:+2348114646340" className="text-slate-900 font-medium hover:text-emerald-700 transition-colors">
+                    +234 811 464 6340
+                  </a>
                 </div>
-                <div>
-                  <span className="text-[11px] font-mono text-muted-paper uppercase block mb-1">Telephone Line</span>
-                  <CMSPlaceholder text="Provide a primary office telephone number with international code" />
+                <div className="flex items-center gap-2.5">
+                  <span className="text-emerald-700 font-bold">✉️ Email:</span>
+                  <a href="mailto:mastersleadershipacademy@gmail.com" className="text-slate-900 font-medium hover:text-emerald-700 transition-colors">
+                    mastersleadershipacademy@gmail.com
+                  </a>
                 </div>
-                <div>
-                  <span className="text-[11px] font-mono text-muted-paper uppercase block mb-1">Facebook Page</span>
+                <div className="flex items-center gap-2.5">
+                  <span className="text-emerald-700 font-bold">🌐 Facebook:</span>
                   <a
                     href="https://www.facebook.com/LeadMastersAcademy"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[14px] text-ink-text hover:text-copper underline font-medium block"
+                    className="text-slate-900 font-medium hover:text-emerald-700 underline"
                   >
-                    LeadMastersAcademy on Facebook
+                    LeadMastersAcademy
                   </a>
                 </div>
               </div>
             </div>
 
-            <div className="border-t border-rule-paper/50 pt-8">
-              <span className="text-[12px] font-semibold text-slate tracking-[0.12em] uppercase block mb-2">
-                Business Compliance
+            {/* Registered Head Office */}
+            <div className="bg-[#F8FAFC] border border-slate-200 p-8 rounded-2xl">
+              <span className="text-xs font-mono font-bold text-slate-500 tracking-wider uppercase block mb-3">
+                Registered Historic Head Office
               </span>
-              <p className="text-[13px] text-muted-paper leading-relaxed font-mono">
+              <p className="text-sm text-slate-700 leading-relaxed mb-2">
+                Plot 4Y2K Crescent, off Tony Okocha Road,<br />
+                New Rumuigbo, Port Harcourt,<br />
+                Rivers State, Nigeria.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-mono text-slate-500">
                 BN 2357164 · CRBN 635769<br />
                 Registered pursuant to CAMA 1990 s.659
-              </p>
+              </div>
             </div>
           </div>
         </div>

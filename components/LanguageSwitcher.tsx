@@ -13,17 +13,19 @@ export default function LanguageSwitcher({ current, label }: { current: Locale; 
   };
 
   return (
-    <select
-      value={current}
-      onChange={handleChange}
-      aria-label={label}
-      className="text-[12px] font-mono uppercase bg-transparent border border-rule text-cream-text px-2 py-1.5 focus:outline-none focus:border-copper-light cursor-pointer"
-    >
-      {LOCALES.map((l) => (
-        <option key={l.code} value={l.code} className="bg-ink text-cream-text">
-          {l.nativeLabel}
-        </option>
-      ))}
-    </select>
+    <div className="relative inline-flex items-center">
+      <select
+        value={current}
+        onChange={handleChange}
+        aria-label={label}
+        className="text-xs font-mono font-semibold uppercase bg-slate-50 hover:bg-slate-100 border border-slate-300 text-slate-800 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-emerald-600 cursor-pointer transition-colors shadow-2xs"
+      >
+        {LOCALES.map((l) => (
+          <option key={l.code} value={l.code} className="bg-white text-slate-900 font-sans text-sm">
+            {l.nativeLabel} ({l.code.toUpperCase()})
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }

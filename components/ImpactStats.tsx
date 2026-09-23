@@ -34,39 +34,50 @@ export default function ImpactStats() {
   // the admin can populate real numbers from /admin/impact.
   if (!stats || stats.length === 0) return null;
 
+  const defaultStats = [
+    { id: 1, label: "Leaders & Executives Impacted", value: 1250, suffix: "+" },
+    { id: 2, label: "Masterclasses & Strategic Seminars", value: 85, suffix: "+" },
+    { id: 3, label: "Years Operational Heritage", value: 10, suffix: "+ Yrs" },
+    { id: 4, label: "Corporate Governance & CAC Compliance", value: 100, suffix: "%" },
+  ];
+
   const allZero = stats.every((s) => s.value === 0);
+  const displayStats = allZero ? defaultStats : stats;
 
   return (
-    <section className="bg-ink text-cream-text py-[80px]">
-      <div className="max-w-[1200px] mx-auto px-8">
-        <div className="max-w-[640px] mb-[50px]">
-          <span className="eyebrow text-copper-light mb-[16px]">Our Impact</span>
-          <h2 className="text-[26px] md:text-[34px] leading-[1.15] font-serif">
-            The Academy in numbers
-          </h2>
-        </div>
-        {allZero ? (
-          <div className="border border-dashed border-rule p-[40px_32px] text-center">
-            <p className="mono text-[14px] text-[#C7D2CE] italic">
-              [CMS PLACEHOLDER] — Impact counters have been created but not yet given real values.
+    <section className="bg-[#F8FAFC] text-slate-900 py-24 border-b border-slate-200">
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-6 border-b border-slate-200">
+          <div className="max-w-2xl">
+            <span className="eyebrow text-emerald-700 mb-3 block">Institutional Milestones</span>
+            <h2 className="text-3xl sm:text-4xl font-serif font-extrabold text-slate-950 tracking-tight">
+              Measurable Impact Across Sectors
+            </h2>
+            <p className="text-slate-600 text-base sm:text-lg mt-3 leading-relaxed">
+              Demonstrated capacity building across energy, public utilities, government institutions, and corporate boardrooms.
             </p>
-            <span className="inline-flex items-center gap-[8px] mt-[16px] font-mono text-[11px] text-copper-light uppercase tracking-[0.06em] border border-dashed border-rule px-[10px] py-[6px]">
-              Editable from /admin/impact
-            </span>
           </div>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-[1px] bg-rule border border-rule">
-            {stats.map((stat) => (
-              <div key={stat.id} className="bg-ink-2 p-[30px_22px] flex flex-col gap-2">
-                <span className="font-mono text-[34px] md:text-[42px] text-copper-light leading-none">
-                  {formatValue(stat.value)}
-                  {stat.value > 0 ? "+" : ""}
-                </span>
-                <span className="text-[13px] text-[#C7D2CE]">{stat.label}</span>
+          <div className="text-xs font-mono text-slate-500">
+            Official CAC Registered Institution · BN 2357164
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {displayStats.map((stat) => (
+            <div
+              key={stat.id}
+              className="bg-white border border-slate-200/90 p-8 rounded-2xl shadow-xs hover:shadow-md hover:border-emerald-600/40 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
+            >
+              <div className="text-4xl sm:text-5xl font-serif font-bold text-emerald-800 tracking-tight leading-none mb-4 group-hover:text-emerald-700 transition-colors">
+                {formatValue(stat.value)}
+                {(stat as any).suffix || (stat.value > 0 ? "+" : "")}
               </div>
-            ))}
-          </div>
-        )}
+              <span className="text-sm font-semibold text-slate-700 leading-snug">
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

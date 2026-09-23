@@ -52,26 +52,26 @@ export default function WebsiteAnalytics() {
   }, []);
 
   return (
-    <section className="bg-ink-2 border-y border-rule py-12 text-cream-text">
-      <div className="max-w-[1200px] mx-auto px-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+    <section className="bg-[#F8FAFC] border-y border-slate-200 py-16 text-slate-900">
+      <div className="max-w-[1240px] mx-auto px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-600"></span>
               </span>
-              <span className="font-mono text-[11px] text-copper-light uppercase tracking-[0.12em]">
+              <span className="font-mono text-xs font-bold text-emerald-800 uppercase tracking-widest">
                 Live Platform Analytics
               </span>
             </div>
-            <h2 className="text-[24px] md:text-[32px] font-serif leading-tight text-cream-text">
-              Website Reach & Audience Traffic
+            <h2 className="text-2xl sm:text-3xl font-serif font-extrabold text-slate-950">
+              Website Reach &amp; Audience Traffic
             </h2>
           </div>
-          <div className="inline-flex items-center gap-3 bg-ink/80 border border-rule px-4 py-2 rounded-[4px] self-start md:self-auto">
-            <span className="text-[12px] text-[#AEC0BB]">Tracking Status:</span>
-            <span className="text-[12px] font-mono text-emerald-400 font-semibold flex items-center gap-1.5">
+          <div className="inline-flex items-center gap-2.5 bg-white border border-slate-200 px-4 py-2 rounded-full shadow-2xs self-start md:self-auto">
+            <span className="text-xs text-slate-500 font-medium">Tracking Status:</span>
+            <span className="text-xs font-mono text-emerald-700 font-semibold flex items-center gap-1.5">
               ● Active Live Traffic
             </span>
           </div>
@@ -79,47 +79,47 @@ export default function WebsiteAnalytics() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Total Visitors */}
-          <div className="bg-ink/90 border border-rule p-6 rounded-[4px] relative overflow-hidden group hover:border-copper-light/40 transition-colors">
-            <div className="text-[12px] font-mono text-copper-light uppercase tracking-[0.1em] mb-2">
+          <div className="bg-white border border-slate-200 p-6 rounded-xl shadow-2xs hover:shadow-md hover:border-emerald-500/60 transition-all">
+            <div className="text-xs font-mono text-slate-500 uppercase tracking-wider font-semibold mb-2">
               Total Visitors
             </div>
-            <div className="text-[34px] md:text-[40px] font-serif text-cream-text font-semibold tracking-tight">
+            <div className="text-3xl sm:text-4xl font-serif font-bold text-slate-900 tracking-tight">
               {isClient ? analytics.totalVisits.toLocaleString() : "14,280"}
             </div>
-            <p className="text-[12px] text-[#AEC0BB] mt-2">Cumulative page visits</p>
+            <p className="text-xs text-slate-500 mt-2 font-medium">Cumulative page visits</p>
           </div>
 
           {/* Today's Visits */}
-          <div className="bg-ink/90 border border-rule p-6 rounded-[4px] relative overflow-hidden group hover:border-copper-light/40 transition-colors">
-            <div className="text-[12px] font-mono text-copper-light uppercase tracking-[0.1em] mb-2">
+          <div className="bg-white border border-slate-200 p-6 rounded-xl shadow-2xs hover:shadow-md hover:border-emerald-500/60 transition-all">
+            <div className="text-xs font-mono text-amber-700 uppercase tracking-wider font-semibold mb-2">
               Visits Today
             </div>
-            <div className="text-[34px] md:text-[40px] font-serif text-copper-light font-semibold tracking-tight">
+            <div className="text-3xl sm:text-4xl font-serif font-bold text-amber-700 tracking-tight">
               {isClient ? analytics.todayVisits.toLocaleString() : "342"}
             </div>
-            <p className="text-[12px] text-[#AEC0BB] mt-2">Visitors logged in the last 24h</p>
+            <p className="text-xs text-slate-500 mt-2 font-medium">Visitors logged in the last 24h</p>
           </div>
 
           {/* Active Users */}
-          <div className="bg-ink/90 border border-rule p-6 rounded-[4px] relative overflow-hidden group hover:border-copper-light/40 transition-colors">
-            <div className="text-[12px] font-mono text-copper-light uppercase tracking-[0.1em] mb-2">
+          <div className="bg-white border border-slate-200 p-6 rounded-xl shadow-2xs hover:shadow-md hover:border-emerald-500/60 transition-all">
+            <div className="text-xs font-mono text-emerald-700 uppercase tracking-wider font-semibold mb-2">
               Active Right Now
             </div>
-            <div className="text-[34px] md:text-[40px] font-serif text-emerald-400 font-semibold tracking-tight">
+            <div className="text-3xl sm:text-4xl font-serif font-bold text-emerald-700 tracking-tight">
               {isClient ? analytics.activeNow : "18"}
             </div>
-            <p className="text-[12px] text-[#AEC0BB] mt-2">Concurrent online sessions</p>
+            <p className="text-xs text-slate-500 mt-2 font-medium">Concurrent online sessions</p>
           </div>
 
           {/* Unique Visitors */}
-          <div className="bg-ink/90 border border-rule p-6 rounded-[4px] relative overflow-hidden group hover:border-copper-light/40 transition-colors">
-            <div className="text-[12px] font-mono text-copper-light uppercase tracking-[0.1em] mb-2">
+          <div className="bg-white border border-slate-200 p-6 rounded-xl shadow-2xs hover:shadow-md hover:border-emerald-500/60 transition-all">
+            <div className="text-xs font-mono text-slate-500 uppercase tracking-wider font-semibold mb-2">
               Unique Visitors
             </div>
-            <div className="text-[34px] md:text-[40px] font-serif text-cream-text font-semibold tracking-tight">
+            <div className="text-3xl sm:text-4xl font-serif font-bold text-slate-900 tracking-tight">
               {isClient ? analytics.uniqueVisitors.toLocaleString() : "8,950"}
             </div>
-            <p className="text-[12px] text-[#AEC0BB] mt-2">Verified unique user devices</p>
+            <p className="text-xs text-slate-500 mt-2 font-medium">Verified unique user devices</p>
           </div>
         </div>
       </div>

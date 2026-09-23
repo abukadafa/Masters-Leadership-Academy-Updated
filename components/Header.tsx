@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -30,6 +30,24 @@ export default function Header({ dict, locale }: { dict: Dictionary; locale: Loc
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const pathname = usePathname();
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = (id: string) => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setActiveDropdown(id);
+  };
+
+  const handleMouseLeave = () => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 250);
+  };
+
+  const toggleDropdown = (id: string) => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setActiveDropdown(activeDropdown === id ? null : id);
+  };
 
   const exploreLinks: NavLinkItem[] = [
     { href: "/about", label: dict.nav.about || "About Us" },
@@ -81,188 +99,215 @@ export default function Header({ dict, locale }: { dict: Dictionary; locale: Loc
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-ink/95 backdrop-blur-md border-b border-rule">
-      <nav className="flex items-center justify-between px-6 lg:px-8 py-5 max-w-[1200px] mx-auto relative">
-        {/* Logo at header */}
-        <Link href="/" className="brand flex items-center shrink-0" aria-label="Masters Leadership Academy Home">
-          <div className="w-[56px] h-[56px] relative shrink-0 bg-white rounded-[6px] p-1 shadow-md hover:scale-105 transition-transform duration-200">
-            <Image
-              src="/logo.jpg"
-              alt="Masters Leadership Academy Logo"
-              fill
-              sizes="56px"
-              className="object-contain rounded-[4px]"
-            />
-          </div>
-        </Link>
-
-        {/* Requirement 4 & 5: Desktop Navigation Dropdowns */}
-        <div className="hidden md:flex gap-6 lg:gap-8 items-center ml-auto mr-6">
-          {dropdownGroups.map((group) => (
-            <div
-              key={group.id}
-              className="relative group py-2"
-              onMouseEnter={() => setActiveDropdown(group.id)}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button
-                className={`flex items-center gap-1.5 text-[14px] transition-all py-1 ${
-                  activeDropdown === group.id ? "text-copper-light font-medium" : "text-cream-text opacity-90 hover:opacity-100"
-                }`}
-              >
-                {group.label}
-                <svg
-                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    activeDropdown === group.id ? "rotate-180 text-copper-light" : "opacity-60"
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-
-              {/* Mega Dropdown Menu */}
-              <div
-                className={`absolute left-0 top-full mt-1 w-64 bg-ink border border-rule shadow-2xl rounded-[4px] py-2 z-50 transition-all duration-200 ${
-                  activeDropdown === group.id
-                    ? "opacity-100 visible translate-y-0"
-                    : "opacity-0 invisible -translate-y-2 pointer-events-none"
-                }`}
-              >
-                {group.links.map((link: NavLinkItem) => (
-                  <div key={link.href} className="px-1">
-                    <Link
-                      href={link.href}
-                      onClick={() => setActiveDropdown(null)}
-                      className={`block px-4 py-2 text-[13px] rounded-[2px] transition-colors ${
-                        pathname === link.href
-                          ? "bg-copper/20 text-copper-light font-semibold"
-                          : "text-cream-text/85 hover:text-cream-text hover:bg-white/5"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-
-                    {/* Sub-items under Events (Requirement 5) */}
-                    {link.subItems && (
-                      <div className="ml-4 border-l border-rule/60 my-1 pl-2 flex flex-col gap-0.5">
-                        {link.subItems.map((sub: SubItem) => (
-                          <Link
-                            key={sub.href}
-                            href={sub.href}
-                            onClick={() => setActiveDropdown(null)}
-                            className="block px-3 py-1 text-[12px] text-copper-light/90 hover:text-copper-light hover:underline transition-colors"
-                          >
-                            ↳ {sub.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-2xs">
+      <nav className="flex items-center justify-between px-6 sm:px-8 lg:px-10 py-3.5 max-w-[1400px] mx-auto relative">
+        {/* Brand Area with Large Logo and Company Name (Subtitle removed per request) */}
+        <div className="flex items-center shrink-0 mr-4 xl:mr-8">
+          <Link href="/" className="brand flex items-center gap-3.5 group" aria-label="Masters Leadership Academy Home">
+            <div className="w-[58px] h-[58px] sm:w-[68px] sm:h-[68px] relative shrink-0 bg-white rounded-2xl p-1.5 border border-slate-200 shadow-xs group-hover:scale-105 group-hover:border-emerald-600/50 transition-all duration-300">
+              <Image
+                src="/logo.jpg"
+                alt="Masters Leadership Academy Logo"
+                fill
+                sizes="68px"
+                className="object-contain rounded-xl"
+                priority
+              />
             </div>
-          ))}
+            <span className="font-serif text-xl sm:text-2xl lg:text-[1.55rem] font-extrabold text-slate-950 tracking-tight leading-tight group-hover:text-emerald-800 transition-colors whitespace-nowrap">
+              Masters Leadership Academy
+            </span>
+          </Link>
+        </div>
+
+        {/* Desktop Navigation Links — Centered, Well-Spaced, Intelligent Dropdown Alignment */}
+        <div className="hidden lg:flex gap-5 xl:gap-7 items-center">
+          {dropdownGroups.map((group) => {
+            const isRightAligned = group.id === "getInvolved" || group.id === "company";
+            return (
+              <div
+                key={group.id}
+                className="relative py-2"
+                onMouseEnter={() => handleMouseEnter(group.id)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleDropdown(group.id)}
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[14px] xl:text-[15px] font-medium transition-all cursor-pointer whitespace-nowrap ${
+                    activeDropdown === group.id ? "text-emerald-800 font-semibold bg-emerald-50/80" : "text-slate-700 hover:text-emerald-800 hover:bg-slate-50"
+                  }`}
+                >
+                  <span>{group.label}</span>
+                  <svg
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                      activeDropdown === group.id ? "rotate-180 text-emerald-700" : "text-slate-400"
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {/* Dropdown Menu — opens right-aligned for items near the edge so it never goes off-screen */}
+                <div
+                  onMouseEnter={() => {
+                    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+                  }}
+                  onMouseLeave={handleMouseLeave}
+                  className={`absolute ${isRightAligned ? "right-0" : "left-0"} top-full pt-1.5 w-64 z-50 transition-all duration-200 ${
+                    activeDropdown === group.id
+                      ? "opacity-100 visible translate-y-0"
+                      : "opacity-0 invisible -translate-y-1 pointer-events-none"
+                  }`}
+                >
+                  <div className="bg-white border border-slate-200 shadow-xl rounded-2xl p-2.5 before:absolute before:-top-3 before:left-0 before:right-0 before:h-4">
+                    {group.links.map((link: NavLinkItem) => (
+                      <div key={link.href} className="px-1 py-0.5">
+                        <Link
+                          href={link.href}
+                          onClick={() => setActiveDropdown(null)}
+                          className={`block px-3.5 py-2 text-[13px] rounded-xl font-medium transition-colors ${
+                            pathname === link.href
+                              ? "bg-emerald-50 text-emerald-800 font-semibold"
+                              : "text-slate-700 hover:text-emerald-800 hover:bg-slate-50"
+                          }`}
+                        >
+                          {link.label}
+                        </Link>
+
+                        {/* Sub-items */}
+                        {link.subItems && (
+                          <div className="ml-3 border-l border-slate-200 my-1 pl-3 flex flex-col gap-1">
+                            {link.subItems.map((sub: SubItem) => (
+                              <Link
+                                key={sub.href}
+                                href={sub.href}
+                                onClick={() => setActiveDropdown(null)}
+                                className="block px-2 py-1 text-[12px] text-slate-500 hover:text-emerald-700 hover:underline transition-colors"
+                              >
+                                ↳ {sub.label}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
 
           {/* Contact Direct Link */}
           <Link
             href="/contact"
-            className={`text-[14px] transition-all hover:opacity-100 ${
-              pathname === "/contact" ? "text-copper-light font-medium" : "text-cream-text opacity-90"
+            className={`px-3 py-1.5 rounded-lg text-[14px] xl:text-[15px] font-medium transition-all whitespace-nowrap ${
+              pathname === "/contact" ? "text-emerald-800 font-semibold bg-emerald-50/80" : "text-slate-700 hover:text-emerald-800 hover:bg-slate-50"
             }`}
           >
             {dict.nav.contact || "Contact"}
           </Link>
         </div>
 
-        {/* Right CTA / Language Switcher */}
-        <div className="flex items-center gap-3">
-          <div className="hidden lg:block">
+        {/* Right CTA & Language Switcher */}
+        <div className="flex items-center gap-3 lg:pl-5 lg:border-l lg:border-slate-200 shrink-0">
+          <div className="hidden xl:block">
             <LanguageSwitcher current={locale} label={dict.language.switchLanguage} />
           </div>
-          <Link href="/contact" className="hidden sm:inline-flex btn btn-outline-dark text-xs">
-            {dict.nav.enquireNow || "Enquire Now"}
+          <Link
+            href="/register"
+            className="hidden sm:inline-flex px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs sm:text-sm font-semibold rounded-xl transition-all shadow-xs hover:shadow-md whitespace-nowrap"
+          >
+            Register / Enquire
           </Link>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden bg-none border-none text-cream-text text-2xl cursor-pointer p-1"
+            className="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
             aria-label="Toggle menu"
           >
-            {isOpen ? "✕" : "☰"}
+            <span className="text-2xl leading-none">{isOpen ? "✕" : "☰"}</span>
           </button>
         </div>
+      </nav>
 
-        {/* Mobile Drawer */}
-        {isOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-ink border-b border-rule flex flex-col px-6 py-5 gap-4 z-50 max-h-[80vh] overflow-y-auto shadow-2xl">
-            {dropdownGroups.map((group) => {
-              const isExpanded = mobileExpanded === group.id;
-              return (
-                <div key={group.id} className="border-b border-rule/40 pb-2">
-                  <button
-                    onClick={() => toggleMobileAccordion(group.id)}
-                    className="w-full flex items-center justify-between py-2 text-[15px] font-medium text-cream-text"
-                  >
-                    <span>{group.label}</span>
-                    <span className="text-copper-light">{isExpanded ? "−" : "+"}</span>
-                  </button>
+      {/* Mobile Drawer */}
+      {isOpen && (
+        <div className="lg:hidden fixed inset-0 top-[82px] bg-slate-950/60 backdrop-blur-xs z-40">
+          <div className="bg-white w-full max-h-[calc(100vh-82px)] overflow-y-auto px-6 py-6 border-b border-slate-200 shadow-xl flex flex-col gap-4">
+            <div className="pb-3 border-b border-slate-100 flex items-center justify-between">
+              <span className="text-xs font-mono text-slate-500 uppercase tracking-wider font-semibold">
+                Language
+              </span>
+              <LanguageSwitcher current={locale} label={dict.language.switchLanguage} />
+            </div>
 
-                  {isExpanded && (
-                    <div className="pl-4 py-2 flex flex-col gap-2 bg-ink-2/60 rounded-[4px] mt-1">
-                      {group.links.map((link: NavLinkItem) => (
-                        <div key={link.href}>
-                          <Link
-                            href={link.href}
-                            onClick={() => setIsOpen(false)}
-                            className="block py-1 text-[13px] text-cream-text/80 hover:text-copper-light"
-                          >
-                            {link.label}
-                          </Link>
-                          {link.subItems && (
-                            <div className="pl-3 py-1 flex flex-col gap-1 border-l border-rule/50 my-1">
-                              {link.subItems.map((sub: SubItem) => (
-                                <Link
-                                  key={sub.href}
-                                  href={sub.href}
-                                  onClick={() => setIsOpen(false)}
-                                  className="block text-[12px] text-copper-light hover:underline"
-                                >
-                                  ↳ {sub.label}
-                                </Link>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+            {dropdownGroups.map((group) => (
+              <div key={group.id} className="border-b border-slate-100 pb-3">
+                <button
+                  onClick={() => toggleMobileAccordion(group.id)}
+                  className="w-full flex items-center justify-between py-2 text-base font-serif font-bold text-slate-900"
+                >
+                  <span>{group.label}</span>
+                  <span className="text-slate-400 text-sm">
+                    {mobileExpanded === group.id ? "▲" : "▼"}
+                  </span>
+                </button>
+
+                {mobileExpanded === group.id && (
+                  <div className="pl-3 mt-2 flex flex-col gap-1.5 border-l-2 border-emerald-600">
+                    {group.links.map((link) => (
+                      <div key={link.href}>
+                        <Link
+                          href={link.href}
+                          onClick={() => setIsOpen(false)}
+                          className="block py-1.5 text-sm text-slate-700 hover:text-emerald-700 font-medium"
+                        >
+                          {link.label}
+                        </Link>
+                        {link.subItems && (
+                          <div className="pl-3 flex flex-col gap-1 my-1">
+                            {link.subItems.map((sub) => (
+                              <Link
+                                key={sub.href}
+                                href={sub.href}
+                                onClick={() => setIsOpen(false)}
+                                className="block py-1 text-xs text-slate-500 hover:text-emerald-700"
+                              >
+                                ↳ {sub.label}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
 
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
-              className="py-2 text-[15px] font-medium text-cream-text hover:text-copper-light"
+              className="py-2 text-base font-serif font-bold text-slate-900"
             >
               {dict.nav.contact || "Contact"}
             </Link>
 
-            <div className="pt-2 border-t border-rule/50">
-              <LanguageSwitcher current={locale} label={dict.language.switchLanguage} />
+            <div className="pt-4 border-t border-slate-100">
+              <Link
+                href="/register"
+                onClick={() => setIsOpen(false)}
+                className="w-full py-3 bg-emerald-700 text-white text-center font-semibold text-sm rounded-xl block shadow-sm"
+              >
+                Register / Enquire
+              </Link>
             </div>
-            <Link
-              href="/contact"
-              onClick={() => setIsOpen(false)}
-              className="btn btn-outline-dark text-center w-full justify-center mt-2"
-            >
-              {dict.nav.enquireNow || "Enquire Now"}
-            </Link>
           </div>
-        )}
-      </nav>
+        </div>
+      )}
     </header>
   );
 }
