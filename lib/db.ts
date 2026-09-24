@@ -1,6 +1,7 @@
 import { DatabaseSync } from "node:sqlite";
 import path from "path";
 import fs from "fs";
+import { hashPassword } from "./password";
 
 // SQLite via node:sqlite (native Node.js v22.5+/v24 module): compiles/runs fully offline, no external engine download needed.
 // Note: this stores data in a local file, which works for a single-instance / VPS deployment
@@ -153,22 +154,21 @@ function init(): DatabaseSync {
   }
 
   try {
-    // Seed default admin user on first run if users table is empty
+    // Seed initial admin user only if explicit credentials are provided via environment variables
     const { c: userCount } = db.prepare("SELECT COUNT(*) as c FROM users").get() as { c: number };
     if (userCount === 0) {
-      // Lazy import or inline scrypt hash to avoid top-level issues
-      const crypto = require("crypto");
-      const salt = crypto.randomBytes(16).toString("hex");
-      const hash = crypto.scryptSync("AdminPassword2026!", salt, 64).toString("hex");
-      const passwordHash = `${salt}:${hash}`;
-      db.prepare(
-        "INSERT INTO users (email, password_hash, name, role) VALUES (@email, @password_hash, @name, @role)"
-      ).run({
-        email: "admin@mastersleadership.academy",
-        password_hash: passwordHash,
-        name: "Academy Administrator",
-        role: "SUPER_ADMIN",
-      });
+      const initialPassword = process.env.ADMIN_INITIAL_PASSWORD || process.env.ADMIN_PASSWORD;
+      const initialEmail = (process.env.ADMIN_EMAIL || "").trim().toLowerCase();
+      if (initialPassword && initialEmail) {
+        db.prepare(
+          "INSERT INTO users (email, password_hash, name, role) VALUES (@email, @password_hash, @name, @role)"
+        ).run({
+          email: initialEmail,
+          password_hash: hashPassword(initialPassword),
+          name: process.env.ADMIN_NAME || "Academy Administrator",
+          role: "SUPER_ADMIN",
+        });
+      }
     }
 
     // Seed a starter set of impact counters on first run only
