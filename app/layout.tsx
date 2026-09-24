@@ -97,8 +97,12 @@ export default async function RootLayout({
       lang={localeInfo.code}
       dir={localeInfo.dir}
       className={`${inter.variable} ${fraunces.variable} ${ibmPlexMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-paper text-ink-text font-sans">
+      <body
+        className="min-h-full flex flex-col bg-paper text-ink-text font-sans"
+        suppressHydrationWarning
+      >
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-copper focus:text-[#1B0F05] focus:px-4 focus:py-2 focus:rounded-[2px] focus:text-sm focus:font-semibold"
