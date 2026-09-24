@@ -20,11 +20,11 @@ export default function LanguageSwitcher({ current, label }: { current: Locale; 
         value={current}
         onChange={handleChange}
         aria-label={label}
-        className="text-xs font-mono font-semibold uppercase bg-slate-50 hover:bg-slate-100 border border-slate-300 text-slate-800 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-emerald-600 cursor-pointer transition-colors shadow-2xs"
+        className="text-[11px] xl:text-xs font-mono font-bold uppercase bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 hover:text-slate-900 rounded-lg px-2 py-1.5 focus:outline-none focus:border-emerald-600 cursor-pointer transition-colors shadow-2xs"
       >
         {LOCALES.map((l) => (
-          <option key={l.code} value={l.code} className="bg-white text-slate-900 font-sans text-sm">
-            {l.nativeLabel} ({l.code.toUpperCase()})
+          <option key={l.code} value={l.code} className="bg-white text-slate-900 font-sans text-xs">
+            {l.code.toUpperCase()} · {l.nativeLabel}
           </option>
         ))}
       </select>

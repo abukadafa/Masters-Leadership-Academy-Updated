@@ -15,11 +15,25 @@ declare global {
   var __mlaDb: DatabaseSync | undefined;
 }
 
+function sleep(ms: number) {
+  try {
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+  } catch {
+    const end = Date.now() + ms;
+    while (Date.now() < end) {}
+  }
+}
+
 function init(): DatabaseSync {
   const db = new DatabaseSync(DB_PATH);
-  db.exec("PRAGMA journal_mode = WAL");
-  db.exec("PRAGMA busy_timeout = 10000");
-  db.exec(`
+  try {
+    db.exec("PRAGMA busy_timeout = 15000;");
+    db.exec("PRAGMA journal_mode = WAL;");
+  } catch {}
+
+  for (let attempt = 0; attempt < 5; attempt++) {
+    try {
+      db.exec(`
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       email TEXT UNIQUE NOT NULL,
@@ -128,40 +142,51 @@ function init(): DatabaseSync {
       updated_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
   `);
-
-  // Seed default admin user on first run if users table is empty
-  const { c: userCount } = db.prepare("SELECT COUNT(*) as c FROM users").get() as { c: number };
-  if (userCount === 0) {
-    // Lazy import or inline scrypt hash to avoid top-level issues
-    const crypto = require("crypto");
-    const salt = crypto.randomBytes(16).toString("hex");
-    const hash = crypto.scryptSync("AdminPassword2026!", salt, 64).toString("hex");
-    const passwordHash = `${salt}:${hash}`;
-    db.prepare(
-      "INSERT INTO users (email, password_hash, name, role) VALUES (@email, @password_hash, @name, @role)"
-    ).run({
-      email: "admin@mastersleadership.academy",
-      password_hash: passwordHash,
-      name: "Academy Administrator",
-      role: "SUPER_ADMIN",
-    });
+      break;
+    } catch (e: any) {
+      if (attempt < 4) {
+        sleep(100 * (attempt + 1));
+      } else {
+        break;
+      }
+    }
   }
 
-  // Seed a starter set of impact counters on first run only
-  const { c: impactStatsCount } = db.prepare("SELECT COUNT(*) as c FROM impact_stats").get() as {
-    c: number;
-  };
-  if (impactStatsCount === 0) {
-    const seed = db.prepare(
-      "INSERT INTO impact_stats (label, value, sort_order) VALUES (@label, @value, @sort_order)"
-    );
-    [
-      { label: "Students Trained", value: 0, sort_order: 0 },
-      { label: "Seminars Delivered", value: 0, sort_order: 1 },
-      { label: "Workshops Delivered", value: 0, sort_order: 2 },
-      { label: "Conferences Hosted", value: 0, sort_order: 3 },
-    ].forEach((row) => seed.run(row));
-  }
+  try {
+    // Seed default admin user on first run if users table is empty
+    const { c: userCount } = db.prepare("SELECT COUNT(*) as c FROM users").get() as { c: number };
+    if (userCount === 0) {
+      // Lazy import or inline scrypt hash to avoid top-level issues
+      const crypto = require("crypto");
+      const salt = crypto.randomBytes(16).toString("hex");
+      const hash = crypto.scryptSync("AdminPassword2026!", salt, 64).toString("hex");
+      const passwordHash = `${salt}:${hash}`;
+      db.prepare(
+        "INSERT INTO users (email, password_hash, name, role) VALUES (@email, @password_hash, @name, @role)"
+      ).run({
+        email: "admin@mastersleadership.academy",
+        password_hash: passwordHash,
+        name: "Academy Administrator",
+        role: "SUPER_ADMIN",
+      });
+    }
+
+    // Seed a starter set of impact counters on first run only
+    const { c: impactStatsCount } = db.prepare("SELECT COUNT(*) as c FROM impact_stats").get() as {
+      c: number;
+    };
+    if (impactStatsCount === 0) {
+      const seed = db.prepare(
+        "INSERT INTO impact_stats (label, value, sort_order) VALUES (@label, @value, @sort_order)"
+      );
+      [
+        { label: "Students Trained", value: 0, sort_order: 0 },
+        { label: "Seminars Delivered", value: 0, sort_order: 1 },
+        { label: "Workshops Delivered", value: 0, sort_order: 2 },
+        { label: "Conferences Hosted", value: 0, sort_order: 3 },
+      ].forEach((row) => seed.run(row));
+    }
+  } catch {}
 
   return db;
 }
