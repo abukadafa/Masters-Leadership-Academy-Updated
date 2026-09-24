@@ -14,7 +14,7 @@
   --slate-light: #64748B;
   --cream-text: #FFFFFF;
   --ink-text: #0F172A;
-  --muted-paper: #475569;
+  --muted-paper: #334155;
   --rule: #E2E8F0;
   --rule-paper: #E2E8F0;
 }
@@ -54,7 +54,6 @@ body {
 
 h1, h2, h3, .serif {
   font-family: var(--font-fraunces), serif;
-  font-weight: 550;
   letter-spacing: -0.015em;
   color: var(--ink-text);
 }
@@ -225,15 +224,14 @@ h1, h2, h3, .serif {
   }
 }
 
-/* Chat assistant sits directly above the WhatsApp button so the two floating actions
-   stack instead of overlapping. */
+/* Chat assistant floating action button */
 .chat-fab {
-  bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
   right: calc(1rem + env(safe-area-inset-right, 0px));
 }
 @media (min-width: 640px) {
   .chat-fab {
-    bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
-    right: calc(1.5rem + env(safe-area-inset-right, 0px));
+    bottom: calc(1.75rem + env(safe-area-inset-bottom, 0px));
+    right: calc(1.75rem + env(safe-area-inset-right, 0px));
   }
 }

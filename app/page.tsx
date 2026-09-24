@@ -5,9 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import ImpactStats from "@/components/ImpactStats";
 import WebsiteAnalytics from "@/components/WebsiteAnalytics";
-import { CORE_PHILOSOPHY, ORG_FACTS, LEADERSHIP_TEAM } from "@/lib/site";
+import { CORE_PHILOSOPHY, LEADERSHIP_TEAM } from "@/lib/site";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function Home() {
+  const { dict, locale } = useLanguage();
+  const h = dict.home;
+
   useEffect(() => {
     const revealEls = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver(
@@ -39,42 +43,37 @@ export default function Home() {
             {/* Left Content Column — Anchored Far Left with Controlled Max Width */}
             <div className="w-full lg:max-w-[560px] xl:max-w-[600px] flex flex-col items-start text-left shrink-0">
               {/* Animated Live Status Pill */}
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-semibold tracking-wide mb-6 shadow-2xs">
+              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-950 text-xs font-semibold tracking-wide mb-6 shadow-2xs">
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-600"></span>
                 </span>
-                <span>2026/2027 Executive Seminars &amp; Cohorts Open</span>
+                <span>{h.liveStatus}</span>
               </div>
 
               {/* Main Authority Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-serif font-extrabold text-slate-950 leading-[1.16] tracking-tight">
-                Building Leadership With<br />
+                {h.heroHeadline1}<br />
                 <span className="relative inline-block my-1.5">
                   <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-emerald-800 via-teal-800 to-amber-700">
-                    Lasting Impact
+                    {h.heroHeadlineHighlight}
                   </span>
                   <span className="absolute bottom-2 left-0 w-full h-3 bg-emerald-200/50 -z-10 rounded-sm"></span>
                 </span><br />
-                Across <span className="text-slate-400 font-light">Generations.</span>
+                {h.heroHeadline2} <span className="text-slate-900 font-extrabold">{h.heroHeadlineGenerations}</span>
               </h1>
 
-              {/* Exact Requested Subtitle */}
-              <p className="mt-6 text-base sm:text-lg lg:text-xl text-slate-700 max-w-xl leading-relaxed font-normal">
-                Empowering executives, managers, and institutions with diagnostic decision frameworks, executive seminars, and strategic technical services.
+              {/* Subtitle */}
+              <p className="mt-6 text-base sm:text-lg lg:text-xl text-slate-800 max-w-xl leading-relaxed font-normal">
+                {h.heroSubtitle}
               </p>
 
               {/* Strategic Focus Tags */}
               <div className="flex flex-wrap gap-2 mt-6">
-                {[
-                  "Seminars & Symposiums",
-                  "Executive Conferences",
-                  "Technical Advisory",
-                  "Thought Leadership",
-                ].map((tag) => (
+                {h.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs font-semibold text-slate-700 bg-white border border-slate-200/90 shadow-2xs rounded-full px-3.5 py-1.5"
+                    className="text-xs font-semibold text-slate-800 bg-white border border-slate-300 shadow-2xs rounded-full px-3.5 py-1.5"
                   >
                     {tag}
                   </span>
@@ -87,7 +86,7 @@ export default function Home() {
                   href="/programmes"
                   className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-emerald-700 text-white font-semibold text-sm rounded-xl hover:bg-emerald-800 transition-all duration-200 shadow-[0_4px_16px_rgba(5,150,105,0.25)] hover:shadow-[0_6px_22px_rgba(5,150,105,0.35)] hover:-translate-y-0.5 group"
                 >
-                  <span>Explore Programmes &amp; Seminars</span>
+                  <span>{h.exploreBtn}</span>
                   <svg
                     className="w-4 h-4 group-hover:translate-x-1 transition-transform"
                     fill="none"
@@ -99,28 +98,28 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/corporate-training"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 border border-slate-300 bg-white text-slate-700 font-semibold text-sm rounded-xl hover:bg-slate-50 hover:border-slate-400 transition-all duration-200 shadow-2xs hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 border border-slate-300 bg-white text-slate-800 font-semibold text-sm rounded-xl hover:bg-slate-50 hover:border-slate-400 transition-all duration-200 shadow-2xs hover:-translate-y-0.5"
                 >
-                  <span>Corporate Advisory</span>
-                  <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <span>{h.advisoryBtn}</span>
+                  <svg className="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
                 </Link>
               </div>
 
               {/* Fast Trust Indicators */}
-              <div className="flex flex-wrap items-center gap-5 mt-8 pt-6 border-t border-slate-200/80 text-xs text-slate-500 font-mono">
+              <div className="flex flex-wrap items-center gap-5 mt-8 pt-6 border-t border-slate-300 text-xs text-slate-700 font-mono font-medium">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-600" />
-                  <span>CAC: BN 2357164</span>
+                  <span>{h.cacBadge}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-600" />
-                  <span>CRBN: 635769</span>
+                  <span>{h.crbnBadge}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-amber-500" />
-                  <span>Utako, Abuja</span>
+                  <span>{h.locationBadge}</span>
                 </div>
               </div>
             </div>
@@ -141,35 +140,35 @@ export default function Home() {
                     </svg>
                   </div>
                   <span className="text-[10px] font-mono font-bold text-emerald-800 bg-emerald-100/70 px-3 py-1 rounded-full uppercase tracking-wider">
-                    Academy Focus
+                    {h.cardBadge}
                   </span>
                 </div>
 
                 <h3 className="text-xl font-serif font-bold text-slate-900 mb-1 leading-snug">
-                  Strategic Advisory &amp; Pillars
+                  {h.cardTitle}
                 </h3>
-                <p className="text-slate-500 text-xs leading-relaxed mb-5">
-                  Transforming executives, public institutions, and corporate boards into high-performing entities.
+                <p className="text-slate-700 text-xs leading-relaxed mb-5 font-normal">
+                  {h.cardSubtitle}
                 </p>
 
                 {/* Quick Institutional Stat Metrics */}
-                <div className="grid grid-cols-2 gap-3 mb-5 p-3.5 bg-slate-50 rounded-2xl border border-slate-100">
+                <div className="grid grid-cols-2 gap-3 mb-5 p-3.5 bg-slate-50 rounded-2xl border border-slate-200/80">
                   <div>
-                    <div className="text-2xl font-serif font-extrabold text-emerald-800 tracking-tight">1,250+</div>
-                    <div className="text-[11px] font-medium text-slate-600 leading-tight mt-0.5">Leaders Trained</div>
+                    <div className="text-2xl font-serif font-extrabold text-emerald-800 tracking-tight">{h.leadersTrained}</div>
+                    <div className="text-[11px] font-semibold text-slate-700 leading-tight mt-0.5">{h.leadersTrainedSub}</div>
                   </div>
-                  <div className="border-l border-slate-200 pl-3">
-                    <div className="text-2xl font-serif font-extrabold text-amber-700 tracking-tight">10+ Yrs</div>
-                    <div className="text-[11px] font-medium text-slate-600 leading-tight mt-0.5">Advisory Heritage</div>
+                  <div className="border-l border-slate-300 pl-3">
+                    <div className="text-2xl font-serif font-extrabold text-amber-700 tracking-tight">{h.heritage}</div>
+                    <div className="text-[11px] font-semibold text-slate-700 leading-tight mt-0.5">{h.heritageSub}</div>
                   </div>
                 </div>
 
                 {/* Progress Indicators */}
                 <div className="space-y-3.5">
                   <div>
-                    <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
-                      <span>Seminars &amp; Symposiums</span>
-                      <span className="text-emerald-700 font-bold font-mono text-[11px]">94% Executive</span>
+                    <div className="flex justify-between text-xs font-semibold text-slate-800 mb-1">
+                      <span>{h.seminarsPillar}</span>
+                      <span className="text-emerald-700 font-bold font-mono text-[11px]">{h.seminarsMetric}</span>
                     </div>
                     <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div className="h-full bg-emerald-600 w-[94%] rounded-full" />
@@ -177,9 +176,9 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
-                      <span>Conferences &amp; Summits</span>
-                      <span className="text-emerald-700 font-bold font-mono text-[11px]">88% Pan-African</span>
+                    <div className="flex justify-between text-xs font-semibold text-slate-800 mb-1">
+                      <span>{h.conferencesPillar}</span>
+                      <span className="text-emerald-700 font-bold font-mono text-[11px]">{h.conferencesMetric}</span>
                     </div>
                     <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div className="h-full bg-emerald-600 w-[88%] rounded-full" />
@@ -187,9 +186,9 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
-                      <span>Technical Advisory &amp; Governance</span>
-                      <span className="text-amber-600 font-bold font-mono text-[11px]">92% Institutional</span>
+                    <div className="flex justify-between text-xs font-semibold text-slate-800 mb-1">
+                      <span>{h.technicalPillar}</span>
+                      <span className="text-amber-600 font-bold font-mono text-[11px]">{h.technicalMetric}</span>
                     </div>
                     <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div className="h-full bg-amber-500 w-[92%] rounded-full" />
@@ -197,9 +196,9 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
-                      <span>Thought Leadership Briefs</span>
-                      <span className="text-slate-500 font-bold font-mono text-[11px]">80% Continuous</span>
+                    <div className="flex justify-between text-xs font-semibold text-slate-800 mb-1">
+                      <span>{h.thoughtPillar}</span>
+                      <span className="text-slate-700 font-bold font-mono text-[11px]">{h.thoughtMetric}</span>
                     </div>
                     <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div className="h-full bg-slate-400 w-[80%] rounded-full" />
@@ -208,21 +207,21 @@ export default function Home() {
                 </div>
 
                 {/* Core Philosophy Block — Placed Neatly Inside the Card with Zero Overlap */}
-                <div className="mt-6 pt-5 border-t border-slate-100 bg-slate-950 text-white rounded-2xl p-4 sm:p-5 shadow-xs">
+                <div className="mt-6 pt-5 border-t border-slate-200 bg-slate-950 text-white rounded-2xl p-4 sm:p-5 shadow-xs">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
                     </span>
                     <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-                      Core Philosophy
+                      {h.philosophyBadge}
                     </span>
                   </div>
                   <p className="font-serif text-sm font-bold text-white mb-1 leading-snug">
-                    Integrity · Excellence · Partnership · Impact
+                    {h.philosophyTitle}
                   </p>
-                  <p className="text-[11px] text-slate-300 leading-relaxed font-light">
-                    Measurable outcomes achieved by our partners — not merely activity.
+                  <p className="text-xs text-slate-300 leading-relaxed font-light">
+                    {h.philosophyDesc}
                   </p>
                 </div>
               </div>
@@ -237,12 +236,12 @@ export default function Home() {
       <section className="py-20 lg:py-28 bg-[#F8FAFC] border-b border-slate-200">
         <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="eyebrow text-emerald-700 mb-3 justify-center block">Foundational Direction</span>
+            <span className="eyebrow text-emerald-700 mb-3 justify-center block">{h.visionMissionEyebrow}</span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-slate-950 tracking-tight mb-4">
-              Vision, Mission &amp; Core Values
+              {h.visionMissionHeading}
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-              We anchor every advisory engagement, executive symposium, and curriculum module in clear principles of integrity, institutional rigour, and enduring generational impact.
+            <p className="text-slate-700 text-base sm:text-lg leading-relaxed">
+              {h.visionMissionSubtitle}
             </p>
           </div>
 
@@ -253,14 +252,14 @@ export default function Home() {
               <div className="absolute top-0 left-0 w-2.5 h-full bg-emerald-600" />
               <div>
                 <span className="font-mono text-xs font-bold text-emerald-700 uppercase tracking-widest block mb-4">
-                  Our Vision
+                  {h.ourVisionTitle}
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900 leading-snug mb-4">
-                  &ldquo;Building a leadership lifestyle with lasting impact across generations.&rdquo;
+                  {h.visionQuote}
                 </h3>
               </div>
-              <p className="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-5">
-                Instilling habits, ethical clarity, and decision competence that sustain beyond immediate tenures.
+              <p className="text-sm text-slate-700 leading-relaxed border-t border-slate-100 pt-5">
+                {h.visionNote}
               </p>
             </div>
 
@@ -269,21 +268,21 @@ export default function Home() {
               <div className="absolute top-0 left-0 w-2.5 h-full bg-amber-500" />
               <div>
                 <span className="font-mono text-xs font-bold text-amber-700 uppercase tracking-widest block mb-4">
-                  Our Mission
+                  {h.ourMissionTitle}
                 </span>
                 <p className="text-base sm:text-lg text-slate-900 font-serif leading-relaxed mb-4">
-                  &ldquo;Equipping leaders and institutions with strategic insight and practical tools to translate ambition into measurable outcomes — bridging the boardroom, the classroom and the public square.&rdquo;
+                  {h.missionQuote}
                 </p>
               </div>
-              <p className="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-5">
-                Bridging academic rigour, corporate boardroom reality, and civic public policy.
+              <p className="text-sm text-slate-700 leading-relaxed border-t border-slate-100 pt-5">
+                {h.missionNote}
               </p>
             </div>
           </div>
 
           {/* 4 Core Values Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {CORE_PHILOSOPHY.coreValues.map((val) => (
+            {h.coreValues.map((val) => (
               <div
                 key={val.title}
                 className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-emerald-500/60 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
@@ -295,7 +294,7 @@ export default function Home() {
                   <h4 className="text-lg font-serif font-bold text-slate-900 mb-2">
                     {val.title}
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
                     {val.description}
                   </p>
                 </div>
@@ -312,19 +311,19 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 pb-5 border-b border-slate-200">
             <div className="max-w-2xl">
-              <span className="eyebrow text-emerald-700 mb-2 block">Faculty &amp; Leadership</span>
+              <span className="eyebrow text-emerald-700 mb-2 block">{h.facultyEyebrow}</span>
               <h2 className="text-3xl sm:text-4xl font-serif font-extrabold text-slate-950 tracking-tight">
-                Executive Leadership Council
+                {h.facultyHeading}
               </h2>
-              <p className="text-slate-600 text-sm sm:text-base mt-2 leading-relaxed">
-                Direct advisory and instruction from seasoned corporate veterans, engineering fellows, and business school faculty.
+              <p className="text-slate-700 text-sm sm:text-base mt-2 leading-relaxed">
+                {h.facultySubtitle}
               </p>
             </div>
             <Link
               href="/about#leadership"
               className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-800 hover:text-emerald-950 font-mono shrink-0"
             >
-              <span>View Full Leadership Dossiers</span>
+              <span>{h.viewFullDossiers}</span>
               <span>→</span>
             </Link>
           </div>
@@ -361,16 +360,16 @@ export default function Home() {
                     {member.name}
                   </h3>
 
-                  <div className="text-xs font-semibold text-slate-700 mb-2 font-mono">
+                  <div className="text-xs font-semibold text-slate-800 mb-2 font-mono">
                     {member.role}
                   </div>
 
-                  <p className="text-xs text-slate-600 leading-relaxed line-clamp-3 mb-3">
+                  <p className="text-xs text-slate-700 leading-relaxed line-clamp-3 mb-3 font-normal">
                     {member.bio}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 text-[11px] font-mono text-slate-500 line-clamp-1">
+                <div className="pt-3 border-t border-slate-100 text-[11px] font-mono text-slate-700 font-medium line-clamp-1">
                   {member.organization}
                 </div>
               </div>
@@ -400,18 +399,18 @@ export default function Home() {
               />
             </div>
             <div>
-              <span className="eyebrow text-emerald-700 mb-3 block">A Message From Our Chairman</span>
+              <span className="eyebrow text-emerald-700 mb-3 block">{h.chairmanEyebrow}</span>
               <p className="text-lg sm:text-xl font-serif italic leading-relaxed text-slate-900 mb-5 max-w-[58ch]">
-                &ldquo;Our mission has always been to develop leaders who can hold up under pressure, think clearly, and serve their organisations and communities with integrity. Every seminar, conference and technical engagement we run is built toward that end.&rdquo;
+                {h.chairmanQuote}
               </p>
               <div className="font-serif text-lg text-slate-950 font-bold">
-                Dr. Orovwiroro Orakpowenri Godwin, FIMC, CMC
+                {h.chairmanName}
               </div>
-              <div className="text-xs text-slate-500 uppercase tracking-widest mt-1 font-mono">
-                Chairman &amp; Founder, Masters Leadership Academy
+              <div className="text-xs text-slate-700 uppercase tracking-widest mt-1 font-mono font-semibold">
+                {h.chairmanTitle}
               </div>
-              <div className="text-xs text-slate-400 font-mono mt-0.5">
-                Visiting Lecturer, University of Port Harcourt Business School &amp; Garden City Premier Business School
+              <div className="text-xs text-slate-600 font-mono mt-1 font-medium">
+                {h.chairmanAffiliation}
               </div>
             </div>
           </div>

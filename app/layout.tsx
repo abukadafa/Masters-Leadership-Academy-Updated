@@ -16,13 +16,14 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
 });
 
@@ -30,7 +31,7 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -78,6 +79,9 @@ export const viewport: Viewport = {
   themeColor: "#12292B",
 };
 
+import GoogleTranslateScript from "@/components/GoogleTranslateScript";
+import { LanguageProvider } from "@/components/LanguageProvider";
+
 export default async function RootLayout({
   children,
 }: {
@@ -102,14 +106,17 @@ export default async function RootLayout({
           Skip to main content
         </a>
         <OrganizationJsonLd />
-        <Header dict={dict} locale={locale} />
-        <main id="main-content" className="flex-grow">
-          {children}
-        </main>
-        <Footer dict={dict} locale={locale} />
-        <WhatsAppButton />
-        <ChatWidget />
-        <ServiceWorkerRegister />
+        <LanguageProvider locale={locale} dict={dict}>
+          <Header dict={dict} locale={locale} />
+          <main id="main-content" className="flex-grow">
+            {children}
+          </main>
+          <Footer dict={dict} locale={locale} />
+          <WhatsAppButton />
+          <ChatWidget />
+          <GoogleTranslateScript />
+          <ServiceWorkerRegister />
+        </LanguageProvider>
       </body>
     </html>
   );

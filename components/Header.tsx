@@ -100,28 +100,28 @@ export default function Header({ dict, locale }: { dict: Dictionary; locale: Loc
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-2xs">
-      <nav className="flex items-center justify-between px-6 sm:px-8 lg:px-10 py-3.5 max-w-[1400px] mx-auto relative">
-        {/* Brand Area with Large Logo and Company Name (Subtitle removed per request) */}
-        <div className="flex items-center shrink-0 mr-4 xl:mr-8">
-          <Link href="/" className="brand flex items-center gap-3.5 group" aria-label="Masters Leadership Academy Home">
-            <div className="w-[58px] h-[58px] sm:w-[68px] sm:h-[68px] relative shrink-0 bg-white rounded-2xl p-1.5 border border-slate-200 shadow-xs group-hover:scale-105 group-hover:border-emerald-600/50 transition-all duration-300">
+      <nav className="flex items-center justify-between px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 max-w-[1440px] mx-auto relative">
+        {/* Brand Area with Large Logo and Prominent Company Name */}
+        <div className="flex items-center shrink-0 mr-3 xl:mr-6">
+          <Link href="/" className="brand flex items-center gap-3.5 sm:gap-4 group" aria-label="Masters Leadership Academy Home">
+            <div className="w-[68px] h-[68px] sm:w-[80px] sm:h-[80px] lg:w-[86px] lg:h-[86px] relative shrink-0 bg-white rounded-2xl p-2 border border-slate-200/90 shadow-sm group-hover:scale-105 group-hover:border-emerald-600/60 transition-all duration-300">
               <Image
                 src="/logo.jpg"
                 alt="Masters Leadership Academy Logo"
                 fill
-                sizes="68px"
+                sizes="86px"
                 className="object-contain rounded-xl"
                 priority
               />
             </div>
-            <span className="font-serif text-xl sm:text-2xl lg:text-[1.55rem] font-extrabold text-slate-950 tracking-tight leading-tight group-hover:text-emerald-800 transition-colors whitespace-nowrap">
+            <span className="font-serif text-2xl sm:text-3xl lg:text-[1.72rem] xl:text-[1.92rem] font-black text-slate-950 tracking-tight leading-tight group-hover:text-emerald-800 transition-colors whitespace-nowrap">
               Masters Leadership Academy
             </span>
           </Link>
         </div>
 
         {/* Desktop Navigation Links — Centered, Well-Spaced, Intelligent Dropdown Alignment */}
-        <div className="hidden lg:flex gap-5 xl:gap-7 items-center">
+        <div className="hidden lg:flex gap-4 xl:gap-6 items-center">
           {dropdownGroups.map((group) => {
             const isRightAligned = group.id === "getInvolved" || group.id === "company";
             return (
@@ -235,8 +235,8 @@ export default function Header({ dict, locale }: { dict: Dictionary; locale: Loc
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="lg:hidden fixed inset-0 top-[82px] bg-slate-950/60 backdrop-blur-xs z-40">
-          <div className="bg-white w-full max-h-[calc(100vh-82px)] overflow-y-auto px-6 py-6 border-b border-slate-200 shadow-xl flex flex-col gap-4">
+        <div className="lg:hidden fixed inset-0 top-[96px] bg-slate-950/60 backdrop-blur-xs z-40">
+          <div className="bg-white w-full max-h-[calc(100vh-96px)] overflow-y-auto px-6 py-6 border-b border-slate-200 shadow-xl flex flex-col gap-4">
             <div className="pb-3 border-b border-slate-100 flex items-center justify-between">
               <span className="text-xs font-mono text-slate-500 uppercase tracking-wider font-semibold">
                 Language

@@ -8,8 +8,10 @@ export default function LanguageSwitcher({ current, label }: { current: Locale; 
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    document.cookie = `${LOCALE_COOKIE}=${e.target.value}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
-    router.refresh();
+    const nextLocale = e.target.value;
+    document.cookie = `${LOCALE_COOKIE}=${nextLocale}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
+    document.cookie = `googtrans=/en/${nextLocale}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
+    window.location.reload();
   };
 
   return (

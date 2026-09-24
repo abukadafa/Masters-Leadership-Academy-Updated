@@ -11,15 +11,15 @@ export default function Footer({ dict }: { dict: Dictionary; locale: Locale }) {
       <div className="max-w-[1240px] mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 pb-12 border-b border-slate-800/80">
           <div className="foot-brand lg:col-span-2 flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 relative shrink-0 bg-white rounded-lg p-1 shadow-sm">
-                <Image src="/logo.jpg" alt="Masters Leadership Academy logo" fill sizes="40px" className="object-contain rounded" />
+            <div className="flex items-center gap-3.5">
+              <div className="w-13 h-13 relative shrink-0 bg-white rounded-xl p-1.5 shadow-sm border border-slate-700">
+                <Image src="/logo.jpg" alt="Masters Leadership Academy logo" fill sizes="52px" className="object-contain rounded-lg" />
               </div>
               <div>
-                <span className="brand-name font-serif text-white text-[17px] font-bold tracking-tight block leading-tight">
+                <span className="brand-name font-serif text-white text-lg sm:text-xl font-extrabold tracking-tight block leading-tight">
                   Masters Leadership Academy
                 </span>
-                <span className="font-mono text-[10px] text-emerald-400 uppercase tracking-widest">
+                <span className="font-mono text-[11px] text-emerald-400 uppercase tracking-widest font-semibold">
                   Equipping Leaders &amp; Institutions
                 </span>
               </div>
@@ -102,7 +102,7 @@ export default function Footer({ dict }: { dict: Dictionary; locale: Locale }) {
         </div>
 
         <div className="flex flex-wrap justify-between items-center gap-4 pt-6 text-[12px]">
-          <span className="mono text-[11px] text-slate-400 tracking-wide">
+          <span className="mono text-[11px] text-slate-300 tracking-wide font-medium">
             BN 2357164 · CRBN 635769 · CAC Registered Business Name · Utako, Abuja
           </span>
           <div className="flex gap-5 flex-wrap items-center">
@@ -110,7 +110,6 @@ export default function Footer({ dict }: { dict: Dictionary; locale: Locale }) {
             <Link href="/terms" className="hover:text-white transition-colors">{dict.footer.termsOfUse}</Link>
             <Link href="/refund-policy" className="hover:text-white transition-colors">{dict.footer.refundPolicy}</Link>
             <Link href="/cookies" className="hover:text-white transition-colors">{dict.footer.cookiePolicy}</Link>
-            <Link href="/admin" className="text-amber-400 font-semibold hover:underline border-l border-slate-700 pl-4">Admin Portal 🔒</Link>
           </div>
         </div>
       </div>
