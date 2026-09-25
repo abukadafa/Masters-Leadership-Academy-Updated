@@ -38,10 +38,12 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-amber-500/5 rounded-full blur-[120px] pointer-events-none" />
 
+
         <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-12 xl:gap-20">
             {/* Left Content Column — Anchored Far Left with Controlled Max Width */}
             <div className="w-full lg:max-w-[560px] xl:max-w-[600px] flex flex-col items-start text-left shrink-0">
+
               {/* Animated Live Status Pill */}
               <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-950 text-xs font-semibold tracking-wide mb-6 shadow-2xs">
                 <span className="relative flex h-2.5 w-2.5">

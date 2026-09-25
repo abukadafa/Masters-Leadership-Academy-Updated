@@ -1,5 +1,6 @@
 "use client";
 
+import PersistentUploadPanel from "./PersistentUploadPanel";
 import React, { useState } from "react";
 import Image from "next/image";
 
@@ -130,6 +131,7 @@ export default function MediaManager() {
 
   return (
     <div className="flex flex-col gap-8">
+      <PersistentUploadPanel />
       {/* Header Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 border border-rule-paper rounded-[4px]">
         <div>
