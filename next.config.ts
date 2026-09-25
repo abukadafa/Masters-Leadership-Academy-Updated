@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    unoptimized: true,
+  },
   // Don't advertise the framework/version via the X-Powered-By response header.
   poweredByHeader: false,
   // Explicit even though it's the Next.js default — surfaces double-invoked
